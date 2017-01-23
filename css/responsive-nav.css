@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+header{
+	width: 100%;
+	background: #eee;
+}
+
+#btn-menu{
+	display: none;
+}
+
+header label{
+	display: none;
+	width: 40px;
+	height: 40px;
+	padding: 10px;
+	border-right: 1px solid #000;
+}
+
+header label:hover{
+	cursor: pointer;
+	background: rgba(0,0,0,0.30);
+}
+
+.menu ul{
+	margin: 0;
+	list-style: none;
+	padding: 0;
+	display: flex;
+}
+
+.menu li{
+	
+}
+
+
+@media (max-width: 768px){
+
+	header label{
+		display: block;
+	}
+
+	.menu{
+		position: absolute;
+		background: rgba(0,0,0,0.6);
+		width: 70%;
+		margin-left: -70%;
+		transition: all 1s;
+	}
+
+	.menu ul{
+		flex-direction: column;
+	}
+
+	.menu li{
+		border-color: rgba(0,0,0,0.3);
+	}
+
+	#btn-menu:checked ~ .menu{
+		margin: 0;
+	}
+}
