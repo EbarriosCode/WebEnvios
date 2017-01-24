@@ -135,9 +135,58 @@
 	}
 
 	// operción de marcar como pagado un envío
-	if(isset($_GET['pagar'])){
-		$pagado = $_GET['select'];
-		$id = $_GET['id'];
+	$pagar = new Envios();
+
+	if(isset($_POST['id']))
+	{
+		$id = $_POST['id'];
+
+		if(isset($_POST['pagado']))
+		{
+			$pagado = $_POST['pagado'];
+			
+
+			if($pagado)
+			{
+				//echo $pagado." id: ".$id;
+				$pagarlo = $pagar->Pagado($id,$pagado);
+				if($pagarlo){
+					echo "<script>alert('Registro Pagado Correctamente');";
+					echo "window.location.href='Envios_controller.php'</script>";
+				}
+				else{
+					echo "<script>alert('Registro No Pagado ');</script>";
+				}
+			}
+
+			else
+			{
+				$pagado=0;
+				//echo $pagado." id: ".$id;
+				$pagarlo = $pagar->Pagado($id,$pagado);
+				if($pagarlo){
+					echo "<script>alert('Acaba de Cambiar de Pagado a No pagado este Registro');";
+					echo "window.location.href='Envios_controller.php'</script>";
+				}
+				else{
+					echo "<script>alert('Registro No Pagado ');</script>";
+				}
+			}
+		}
+
+		else
+		{		
+			//echo "0 id: ".$id;
+			$pagarlo = $pagar->Pagado($id,0);
+			if($pagarlo){
+					echo "<script>alert('Para marcar como Pagado debera marcar la casilla, el registro aparecerá como no Pagado');";
+					echo "window.location.href='Envios_controller.php'</script>";
+			}
+			else{
+				echo "<script>alert('Registro No Pagado ');</script>";
+			}
+			
+		}
 	}
 
 	require_once("../pages/Envios.php");

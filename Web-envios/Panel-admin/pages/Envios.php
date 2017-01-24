@@ -29,6 +29,10 @@
         .color{
             color: #DF0101;
         }
+
+        .botonNuevo{
+            float: right;
+        }
     </style>
 
 
@@ -165,7 +169,7 @@
                                                 <td><strong>PRECIO</strong></td>
                                                 <td><strong>FECHA</strong></td>
                                                 <td><strong>ESTADO</strong></td>
-                                                <td><strong>CAEX</strong></td>
+                                                <td><strong>CAEX</strong></td>                                                
                                                 <td colspan="2" class="text-center"><strong>OPCIONES</strong></td>
                                             </tr>
                                         </thead>
@@ -198,22 +202,14 @@
 
                                                 </td>
                                                 <td> 
-                                                    <form id="formulario" action="pruebaCheck.php" method="POST">  
-                                                       
-                                                            <!--<label class="radio-inline">
-                                                              <input type="radio" name="pagado" id="Radio1" value="option1"> Pagado
-                                                            </label>
-                                                            <label class="radio-inline">
-                                                              <input type="radio" name="pagado" id="Radio1" value="option1"> No Pagado
-                                                            </label>  -->
-                                                            
+                                                    <form id="formulario" action="" method="POST">                            <input type="hidden" name="id" value="<?php echo $item['id_envio']; ?>">                                               
                                                             <label class="checkbox-inline">
-                                                                <input type="checkbox" name="pago" id="pago" <?php if($item['pago_cargo']==1){ ?> checked   <?php } ?>>
-                                                                <button  type="button" id="button" onclick="ceck(<?php echo $item['id_envio']; ?>)">Pagado</button>
+                                                                <input type="checkbox" name="pagado" id="pagado" <?php if($item['pago_cargo']==1){ ?> checked   <?php } ?> value="1">
+                                                                <button  type="submit" name="btn-pagar"><span class="glyphicon glyphicon-usd"></span></button>
                                                             </label> 
                                                             
                                                       
-                                                    </form>                                                     
+                                                    </form>                                                       
                                                 </td>                                                
                                                 <td><a href="EnviosEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
 
@@ -483,18 +479,29 @@
                                                 <label for="direccion">Direccion Exacta:</label>
                                                 <textarea id="direccion" name="direccion" class="form-control" required></textarea>
                                             </div>
-                                            
+                                              <div type="button" id="botonNuevoProducto" class="botonNuevo btn btn-primary">Agregar Producto</div>                                      
                                             <div class="form-group">
-                                                <label for="producto">Producto:</label>
-                                                <select id="producto" name="producto" class="form-control" onchange="ajax(this.value)"" required>
-                                                    <option selected="">Seleccione:</option>
-                                                    <?php 
-                                                        foreach($Productos as $prod)
-                                                        {
-                                                            echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."</option>";
-                                                        }
-                                                     ?>
-                                                </select>
+                                                <table class="table table-bordered" id="tablaProductos">
+                                                    <tr>
+                                                        <th><label for="producto">Producto:</label></th>
+                                                        <th colspan="2" class="text-center">Opciones</th>    
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <select id="producto" name="producto" class="form-control" onchange="ajax(this.value)"" required>
+                                                                <option selected="">Seleccione:</option>
+                                                                <?php 
+                                                                    foreach($Productos as $prod)
+                                                                    {
+                                                                        echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."</option>";
+                                                                    }
+                                                                 ?>
+                                                            </select>
+                                                        </td>
+                                                        <td class="text-center"><div class="btn btn-success">Guardar</div></td>
+                                                        <td class="text-center"><div class="btn btn-danger">Eliminar</div></td>
+                                                    </tr>                                                    
+                                                </table>    
                                                 <div id="txtHint" class="color"></div>
                                             </div>
 
@@ -615,9 +622,20 @@
     <script>
         
     // comprobar si el envío ya esta pagado por cargo expreso
-
+        function check(id,pago)
+        {
+            $(document).ready(function() {
+                $('#pagado').on('change', function () {
+                    if (this.checked) {
+                        alert("Seleccionado id:"+id);
+                    }
+                    else
+                        alert("No Seleccionado");
+                });
+            });
+        }
        
-           /* $('#button').click(function(){    
+           /*$('#button').click(function(){    
                 if($('input[name=pago]').is(':checked')){
                     alert('Esta pagado');
                     //window.location="Envios_controller.php?id="+id+"&pagado=true";
@@ -629,8 +647,8 @@
                 } 
                 //var check = $('input:checkbox[name=pago]:checked').val();
                 //alert(check);
-            });
-            */
+            }); */
+            
 
         // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
         $(document).ready(function(){
@@ -648,6 +666,7 @@
               }
         }
     </script>
+    <script src="../js/tablaProductos.js"></script>
 
 </body>
 
