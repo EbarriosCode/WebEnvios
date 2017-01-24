@@ -77,7 +77,7 @@
 		$departamento = $_POST['departamento'];
 		$direccion = $_POST['direccion'];
 		$producto = $_POST['producto'];
-		$cantidad = $_POST['cantidad']; 
+		$cantidad = $_POST['cantidadN']; 
 		$precio = $_POST['precio'];
 		$fecha = $_POST['fecha']; 
 		$estado = $_POST['status'];

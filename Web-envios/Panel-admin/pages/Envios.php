@@ -157,7 +157,7 @@
                                     <div class="table-responsive">
                                     <table class="table table-hover">
                                         <thead>
-                                            <tr class="success">
+                                            <tr class="info">
                                                 <td><strong>ID</strong></td>
                                                 <td><strong>CLIENTE</strong></td>
                                                 <td><strong>TELEFONO</strong></td>
@@ -479,7 +479,11 @@
                                                 <label for="direccion">Direccion Exacta:</label>
                                                 <textarea id="direccion" name="direccion" class="form-control" required></textarea>
                                             </div>
-                                              <div type="button" id="botonNuevoProducto" class="botonNuevo btn btn-primary">Agregar Producto</div>                                      
+
+                                            <!--<div class="form-group">
+                                                <div id="botonNuevoProducto" class="botonNuevo btn btn-primary">Agregar Producto</div>                                      
+                                            </div>  -->
+
                                             <div class="form-group">
                                                 <table class="table table-bordered" id="tablaProductos">
                                                     <tr>
@@ -488,7 +492,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <select id="producto" name="producto" class="form-control" onchange="ajax(this.value)"" required>
+                                                            <select id="producto" name="producto" class="form-control" onchange="ajax(this.value)" required>
                                                                 <option selected="">Seleccione:</option>
                                                                 <?php 
                                                                     foreach($Productos as $prod)
@@ -505,7 +509,10 @@
                                                 <div id="txtHint" class="color"></div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <div class="form-group">                                                
+                                                <label for="cantidad">Cantidad:</label>
+                                                <input type="number" id="cantidadN" name="cantidadN" class="form-control" required>
+                                                <br>
                                                 <div id="alerta-roja" class="elemento">
                                                     <div id="alerta" class="alert alert-danger" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
@@ -513,8 +520,6 @@
                                                           <strong>Error :</strong> Esta queriendo enviar mas productos de los que hay en existencia.
                                                     </div>
                                                 </div>
-                                                <label for="cantidad">Cantidad:</label>
-                                                <input type="number" id="cantidad" name="cantidad" class="form-control" onkeypress="return validateInput(event)"  onpaste="return false" required>
                                             </div>
 
                                             <div class="form-group">
@@ -603,7 +608,8 @@
                         </div>                     
                     </div>
                 </div>
-
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="../vendor/jquery/jquery.min.js"></script>
     
     <!-- Bootstrap Core JavaScript -->
@@ -620,42 +626,29 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     <script>
-        
-    // comprobar si el envío ya esta pagado por cargo expreso
-        function check(id,pago)
-        {
-            $(document).ready(function() {
-                $('#pagado').on('change', function () {
-                    if (this.checked) {
-                        alert("Seleccionado id:"+id);
-                    }
-                    else
-                        alert("No Seleccionado");
-                });
-            });
-        }
-       
-           /*$('#button').click(function(){    
-                if($('input[name=pago]').is(':checked')){
-                    alert('Esta pagado');
-                    //window.location="Envios_controller.php?id="+id+"&pagado=true";
-                    return true;
-                }
-                else{
-                    alert('No esta pagado');
-                    return false;
-                } 
-                //var check = $('input:checkbox[name=pago]:checked').val();
-                //alert(check);
-            }); */
-            
-
         // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
         $(document).ready(function(){
             $("#alerta").hide();
 
+            
+            $("#cantidadN").blur(function(){
+                var cantidadInput = parseInt($("#cantidadN").val());
+                var existencia = parseInt($("#existenciaBD").val());
+                //alert("Cantidad en el input: "+cantidadInput +" existencia: "+existencia);
+                if(cantidadInput > existencia)
+                {
+                    $("#alerta").show();
+                    $('#insertar').attr("disabled", true);
+                    return false;
+                }
+                if(!(cantidadInput > existencia))
+                {
+                    $("#alerta").hide();
+                    $('#insertar').attr("disabled", false);
+                    return false;
+                } 
+            });
         });
-
 
 
         function confirmarRegistro(id)

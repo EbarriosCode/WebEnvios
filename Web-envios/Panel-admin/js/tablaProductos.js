@@ -7,8 +7,8 @@ function functionPrincipal()
 
 function funcionNuevoProducto()
 {
-	$("#tablaProductos")
-	.append
+	$("#tablaProductos").append('<tr><td>'+1+'</td><td>'+2+'</td></tr>');
+	/*.append
 	(
 		$('<tr>')
 		.append
@@ -36,5 +36,5 @@ function funcionNuevoProducto()
 			)
 		)
 						
-	);
+	); */
 }
