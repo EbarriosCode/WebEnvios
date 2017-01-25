@@ -240,11 +240,11 @@ $(function () {
                                     <form action="" method="POST">
                                         <div class="form-group">
                                             <label for="">Desde:</label>
-                                            <input type="date" class="form-control" id="desde" name="desde" required>    
+                                            <input type="date" class="form-control" id="desde" name="desde" value="<?php echo date('Y-m-d');?>" required>    
                                         </div>
                                         <div class="form-group">
                                             <label for="">Hasta:</label>
-                                            <input type="date" class="form-control" id="hasta" name="hasta" required>    
+                                            <input type="date" class="form-control" id="hasta" name="hasta" value="<?php echo date('Y-m-d');?>" required>    
                                         </div>                            
                             </div>           
 
