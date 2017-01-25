@@ -481,7 +481,7 @@
                             </div>
                              
                             <div class="modal-body">
-                                <form action="ReporteEnviosFE_controller.php" method="POST">                                   
+                                <form action="ReporteEnviosFEGlosh_controller.php" method="POST">                                   
 
                                     <div class="form-group">
                                         <label for="desde">Desde:</label>
