@@ -85,7 +85,19 @@
                             <a href="../controller/Productos_controller.php"><i class="fa fa-table fa-fw"></i> Consulta Productos</a>
                         </li>
                         <li>
-                            <a href="../controller/Envios_controller.php"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios</a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../controller/Envios_controller.php"> Envios Kiwi</a>
+                                </li>
+                                <li>
+                                    <a href="../controller/EnviosGlosh_controller.php"> Envios Glosh</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        <li>
+                        <li>
+                            <a href="../controller/Usuarios_controller.php"><i class="fa fa-sitemap fa-fw"></i> Administración de Usuarios</a>
                         </li>
 
                     </ul>
