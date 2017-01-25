@@ -86,10 +86,10 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes Gráficos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../controller/GraficaPie_controller.php"> Gráficas 1</a>
+                                    <a href="../controller/GraficaPie_controller.php"> Gráficas PIE</a>
                                 </li>
                                 <li>
-                                    <a href="../controller/GraficaPiramide_controller.php"> Gráficas 2</a>
+                                    <a href="../controller/GraficaPiramide_controller.php"> Gráficas PIRAMIDE</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -97,9 +97,21 @@
                         <li>
                             <a href="../controller/Productos_controller.php"><i class="fa fa-table fa-fw"></i> Consulta de Productos</a>
                         </li>
+                        
                         <li>
-                            <a href="../controller/Envios_controller.php"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios</a>
-                        </li>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../controller/Envios_controller.php"> Envios Kiwi</a>
+                                </li>
+                                <li>
+                                    <a href="../controller/EnviosGlosh_controller.php"> Envios Glosh</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        <li>
+
+
                         <li>
                             <a href="../controller/Usuarios_controller.php"><i class="fa fa-sitemap fa-fw"></i> Administración de Usuarios</a>
                         </li>
@@ -247,7 +259,7 @@ $(function () {
 
         <hr>
       <footer>
-        <p>&copy; 2016 Kiwi Deals.</p>
+        <p>&copy; 2017 Kiwi Deals.</p>
       </footer>    
 
 
@@ -258,11 +270,12 @@ $(function () {
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery
-    <script src="../vendor/jquery/jquery.min.js"></script>
+    <!-- jQuery 
+    <script src="../vendor/jquery/jquery.min.js"></script> -->
 
-     Bootstrap Core JavaScript 
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script> -->
+    <!-- Bootstrap Core JavaScript -->
+
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script> 
 
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../vendor/metisMenu/metisMenu.min.js"></script>

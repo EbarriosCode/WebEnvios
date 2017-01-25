@@ -30,7 +30,7 @@
 	// Inicia paginación
 	$cant_filas = new Envios();
 	$pagination = new Envios();	
-	$no_registros = 10;
+	$no_registros = 15;
 
 	if(isset($_GET['pagina']))
 	 {
@@ -61,7 +61,7 @@
 
 	$total_registros = $cant_filas->numRegistros();
 	$total_paginas = ceil($total_registros/$no_registros);
-	// fin de la paginacion
+	// fin de la paginacion y envios de kiwiPor mayor
 
 	// Cargando combos departamento y producto del modal +
 	$inst = new Envios();
@@ -134,7 +134,7 @@
 		}
 	}
 
-	// operción de marcar como pagado un envío
+	// operción de marcar como pagado un envío de kiwi
 	$pagar = new Envios();
 
 	if(isset($_POST['id']))
@@ -151,8 +151,8 @@
 				//echo $pagado." id: ".$id;
 				$pagarlo = $pagar->Pagado($id,$pagado);
 				if($pagarlo){
-					echo "<script>alert('Registro Pagado Correctamente');";
-					echo "window.location.href='Envios_controller.php'</script>";
+					//echo "<script>alert('Registro Pagado Correctamente');";
+					echo "<script>window.location.href='Envios_controller.php';</script>";
 				}
 				else{
 					echo "<script>alert('Registro No Pagado ');</script>";
@@ -188,6 +188,6 @@
 			
 		}
 	}
-
+	
 	require_once("../pages/Envios.php");
  ?>

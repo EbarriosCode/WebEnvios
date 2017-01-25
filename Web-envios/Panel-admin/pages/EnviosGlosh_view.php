@@ -134,14 +134,14 @@
     
         <div id="page-wrapper">
         <br>
-                    
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab_consultar">
+                
+        <!-- Pestaña Envios Glosh -->
+        <div class="tab-pane" id="tab_registrar">
                 <div class="row form-horizontal">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                                <h2>Envios Registrados Kiwi por Mayor</h2>
-                                <div class="text-right"><button class="btn" data-toggle='modal' data-target='#modal-busqueda'>Consulta por Rango de Fechas <span class="icon-calendar"></span>
+                                <h2>Envios Registrados Glosh</h2>
+                                <div class="text-right"><button class="btn" data-toggle='modal' data-target='#modal-busqueda-glosh'>Consulta por Rango de Fechas <span class="icon-calendar"></span>
                                 </button></div>
                         </div>
                         <div class="panel-body">
@@ -160,7 +160,7 @@
                                      <button class="btn btn-warning" type="submit">Buscar <span class="icon-search"></span></button>
                                      <!--<button cla        ss="btn btn-warning" type="submit">Regresar Lista</button>  -->
                                      </form>
-                                     <a href="#modal-insertar" data-toggle="modal"><button type="button" class="btn btn-primary" ><span class="icon-plus"></span>Registrar / Nuevo</button></a>
+                                     <a href="#modal-insertar-glosh" data-toggle="modal"><button type="button" class="btn btn-primary" ><span class="icon-plus"></span>Registrar / Nuevo</button></a>
                                 </div>
                                 
                             </div>
@@ -186,7 +186,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php foreach($envios as $item): ?>
+                                        <?php foreach($enviosGlosh as $item): ?>
                                             <tr <?php  if($item['pago_cargo']==1) echo "class=danger"; ?>>
                                                 <td><?php echo $item['id_envio']; ?></td>
                                                 <td><?php echo $item['cliente']; ?></td>
@@ -223,7 +223,7 @@
                                                       
                                                     </form>                                                       
                                                 </td>                                                
-                                                <td><a href="EnviosEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
+                                                <td><a href="EnviosEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success'>Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
 
                                                 <!--<td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php /*echo $item['id_envio'];?>','<?php echo $item['cliente']; ?>','<?php echo $item['telefono'];?>','<?php echo $item['numeroGuia'];?>','<?php echo $item['nombreDepartamento'];?>','<?php echo $item['nombreProducto']; ?>','<?php echo $item['cantidad']; ?>','<?php echo $item['precio_envio']; ?>','<?php echo $item['fecha']; ?>','<?php echo $item['estado_entrega']; */ ?>');">Editar <span class="icon-pencil"></span></button></td>
                                                 -->
@@ -263,7 +263,7 @@
                <?php 
                 
 
-                    for($i=1;$i<=$total_paginas;$i++)
+                    for($i=1;$i<=$total_paginasGlosh;$i++)
                     {
                         if($i == $inicio ){
                              echo "<li class='active'><a>".$i." </a></li>";
@@ -292,8 +292,8 @@
                     <?php 
                         if($inicio == 0) $inicioPag = 1;
                         else $inicioPag = $inicio;
-                        echo "Página ".$inicioPag." de ".$total_paginas;
-                        echo " (Total de registros ".$total_registros.")"; 
+                        echo "Página ".$inicioPag." de ".$total_paginasGlosh;
+                        echo " (Total de registros ".$total_registrosGlosh.")"; 
                         
                     ?>
             </strong>
@@ -302,9 +302,10 @@
         <footer>
             <p>&copy; 2017 Kiwi Deals.</p>
         </footer>
-    </div>
+    </div>  
 
-    <!--  Function ajax para reucperar la existencia en el combo productos-->
+
+    <!--  Function ajax para reucperar la existencia en el combo productos GLOSH-->
     <script type="text/javascript">
         function ajax(str){
             var peticion;
@@ -337,8 +338,8 @@
         }
     </script>
 
-    <!-- CODIGO MODAL PARA NUEVO ENVIO DE KIWI -->
-                            <div class="modal fade" id="modal-insertar">
+    <!-- CODIGO MODAL PARA NUEVO ENVIO DE GLOSH -->
+                            <div class="modal fade" id="modal-insertar-glosh">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         
@@ -346,7 +347,7 @@
                                         
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h2 class="text-center "><strong>Agregar Nuevo Envio <span class="icon-plus"></span></strong></h2>
+                                            <h2 class="text-center "><strong>Agregar Nuevo Envio de Glosh<span class="icon-plus"></span></strong></h2>
                                         </div>
                                         
                                         <!-- Contenido de la ventana -->
@@ -420,10 +421,10 @@
                                                 <input type="number" id="cantidadN" name="cantidadN" class="form-control" required>
                                                 <br>
                                                 <div id="alerta-roja" class="elemento">
-                                                    <div id="alerta" class="alert alert-danger" role="alert">
+                                                    <div id="alertaGlosh" class="alert alert-danger" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
                                                           </span></button>
-                                                          <strong>Error :</strong> Esta queriendo enviar mas productos de los que hay en existencia. El botón agregar se ha bloqueado hasta que corrija el error.
+                                                          <strong>Error :</strong> Esta queriendo enviar mas productos de los que hay en existencia.
                                                     </div>
                                                 </div>
                                             </div>
@@ -469,14 +470,14 @@
                                 </div>
                             </div>    
 
-<!-- MODAL PARA FILTRAR POR RANGO DE FECHA ENVIOS DE KIWI -->
+<!-- MODAL PARA FILTRAR POR RANGO DE FECHA ENVIOS DE GLOSH -->
 
-                <div class="modal fade" id="modal-busqueda">
+                <div class="modal fade" id="modal-busqueda-glosh">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                 <h2 class="text-center "><strong>Consulta por Rango de Fecha <span class="icon-calendar"></span></strong></h2>
+                                 <h2 class="text-center "><strong>Consulta por Rango de Fecha Envios Glosh<span class="icon-calendar"></span></strong></h2>
                             </div>
                              
                             <div class="modal-body">
@@ -514,7 +515,7 @@
                         </div>                     
                     </div>
                 </div>
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="../vendor/jquery/jquery.min.js"></script>
     
@@ -534,7 +535,8 @@
     <script>
         // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
         $(document).ready(function(){
-            $("#alerta").hide();            
+            $("#alerta").hide();
+            $("#alertaGlosh").hide();
             
             $("#cantidadN").blur(function(){
                 var cantidadInput = parseInt($("#cantidadN").val());

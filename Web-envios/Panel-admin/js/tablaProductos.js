@@ -1,40 +1,24 @@
-$(document).ready(funcionPrincipal);
+$(document).ready(function(){
+	$("#btn-add").click(function(){
+		agregar();
+	});
+});
 
-function functionPrincipal()
+var cont = 0;
+var id_fila_selected = [];
+
+function agregar()
 {
-	$("#botonNuevoProducto").click(funcionNuevoProducto);
+	cont++;
+	var fila = '<tr id="fila'+cont+'"><td>'+cont+'</td><td>valor por defecto</td></tr>';
+	$('#tablaProductos').append(fila);
+	reordenar();
 }
 
-function funcionNuevoProducto()
+function reordenar()
 {
-	$("#tablaProductos").append('<tr><td>'+1+'</td><td>'+2+'</td></tr>');
-	/*.append
-	(
-		$('<tr>')
-		.append
-		(
-			$('<td>')
-			.append
-			(
-				$('<input>').attr('type','text').addClass('form-control')
-			)					
-		)
-		.append
-		(
-			$('<td>')
-			.append
-			(
-				$('<div>').addClass('btn btn-primary').text('Guardar')
-			)
-		)
-		.append
-		(
-			$('<td>')
-			.append
-			(
-				$('<div>').addClass('btn btn-danger').text('Eliminar')
-			)
-		)
-						
-	); */
+	var num = 1;
+	$("#tablaProductos tbody tr").each(function(){
+		$(this).find('td').eq(0).text(num);
+	});
 }
