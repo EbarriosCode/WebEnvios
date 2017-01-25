@@ -152,7 +152,7 @@
                                 </div>
                                 
                                 <div class="col-xs-5 text-left">
-                                    <form action="../controller/Envios_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Cliente, Departamento, Número de guía, Producto o Estado"/>
+                                    <form action="../controller/EnviosGlosh_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Cliente, Departamento, Número de guía, Producto o Estado"/>
                                 </div>
                                 
                                 <br><br>
@@ -223,7 +223,7 @@
                                                       
                                                     </form>                                                       
                                                 </td>                                                
-                                                <td><a href="EnviosEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success'>Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
+                                                <td><a href="EnviosEditGlosh_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success'>Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
 
                                                 <!--<td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php /*echo $item['id_envio'];?>','<?php echo $item['cliente']; ?>','<?php echo $item['telefono'];?>','<?php echo $item['numeroGuia'];?>','<?php echo $item['nombreDepartamento'];?>','<?php echo $item['nombreProducto']; ?>','<?php echo $item['cantidad']; ?>','<?php echo $item['precio_envio']; ?>','<?php echo $item['fecha']; ?>','<?php echo $item['estado_entrega']; */ ?>');">Editar <span class="icon-pencil"></span></button></td>
                                                 -->
@@ -333,7 +333,7 @@
                 }
             };
             
-            peticion.open("GET","RecuperarExistencia_controller.php?parametro="+str,true);
+            peticion.open("GET","RecuperarExistenciaGlosh_controller.php?parametro="+str,true);
             peticion.send();
         }
     </script>
@@ -421,10 +421,10 @@
                                                 <input type="number" id="cantidadN" name="cantidadN" class="form-control" required>
                                                 <br>
                                                 <div id="alerta-roja" class="elemento">
-                                                    <div id="alertaGlosh" class="alert alert-danger" role="alert">
+                                                    <div id="alerta" class="alert alert-danger" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
                                                           </span></button>
-                                                          <strong>Error :</strong> Esta queriendo enviar mas productos de los que hay en existencia.
+                                                          <strong>Error :</strong> Esta queriendo enviar más productos de los que hay en existencia. El botón agregar se ha bloqueado hasta que corrija el error.
                                                     </div>
                                                 </div>
                                             </div>
@@ -477,7 +477,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                 <h2 class="text-center "><strong>Consulta por Rango de Fecha Envios Glosh<span class="icon-calendar"></span></strong></h2>
+                                 <h2 class="text-center "><strong>Consulta por Rango de Fecha <span class="icon-calendar"></span></strong></h2>
                             </div>
                              
                             <div class="modal-body">
@@ -536,7 +536,6 @@
         // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
         $(document).ready(function(){
             $("#alerta").hide();
-            $("#alertaGlosh").hide();
             
             $("#cantidadN").blur(function(){
                 var cantidadInput = parseInt($("#cantidadN").val());
@@ -562,7 +561,7 @@
         {
            if (window.confirm("Esta seguro que desea eliminar este registro?") == true)
               {
-                 window.location = "Envios_controller.php?idEnvio="+id+"&accion=borrar";
+                 window.location = "EnviosGlosh_controller.php?idEnvio="+id+"&accion=borrar";
               }
         }
     </script>

@@ -423,7 +423,7 @@
                                                     <div id="alerta" class="alert alert-danger" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
                                                           </span></button>
-                                                          <strong>Error :</strong> Esta queriendo enviar mas productos de los que hay en existencia. El botón agregar se ha bloqueado hasta que corrija el error.
+                                                          <strong>Error :</strong> Esta queriendo enviar más productos de los que hay en existencia. El botón agregar se ha bloqueado hasta que corrija el error.
                                                     </div>
                                                 </div>
                                             </div>

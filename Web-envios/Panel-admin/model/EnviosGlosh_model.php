@@ -135,7 +135,7 @@
 
 		public function getProductos()
 		{
-			$sql = "SELECT * FROM productos";
+			$sql = "SELECT * FROM productosglosh";
 			$rs = $this->db->prepare($sql);
 			
 			$rs->execute();
@@ -151,7 +151,7 @@
 		// metodo para descontar la existencia cuando se haga un envio de un producto
 		public function descontarExistenciaProductos($id,$resta)
 		{
-			$sql = "UPDATE productos SET existencia=existencia-'$resta' WHERE id_producto='$id'";
+			$sql = "UPDATE productosglosh SET existencia=existencia-'$resta' WHERE id_producto='$id'";
 			$rs = $this->db->prepare($sql);
 			$descExistencia = $rs->execute();
 
@@ -169,7 +169,7 @@
 
 		public function ValidaNuevaExistencia($id)
 		{
-			$sql = "SELECT existencia FROM productos WHERE id_producto='$id'";
+			$sql = "SELECT existencia FROM productosglosh WHERE id_producto='$id'";
 			$rs = $this->db->prepare($sql);
 			$rs->execute();
 
