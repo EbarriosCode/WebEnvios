@@ -101,8 +101,17 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="../controller/Productos_controller.php"><i class="fa fa-table fa-fw"></i> Consulta Productos</a>
-                        </li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="../controller/Productos_controller.php">Productos Kiwi</a>
+                                </li>
+                                <li>
+                                    <a href="../controller/ProductosGlosh_controller.php">Productos Glosh</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>        
                         <!-- envios -->
                         <li>
                             <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
