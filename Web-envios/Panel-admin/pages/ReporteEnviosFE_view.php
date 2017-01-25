@@ -156,7 +156,7 @@
                                         </thead>
                                         <tbody>
                                         <?php foreach($reporte as $item): ?>
-                                            <tr>
+                                            <tr <?php  if($item['pago_cargo']==1) echo "class=danger"; ?>>
                                                 <td><?php echo $item['id_envio']; ?></td>
                                                 <td><?php echo $item['cliente']; ?></td>
                                                 <td><?php echo $item['telefono']; ?></td>
