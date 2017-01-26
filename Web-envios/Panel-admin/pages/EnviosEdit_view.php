@@ -196,16 +196,31 @@
                       
                     </label>
                 </div>
-            
+                <!--Validación de no permitir editar si el envío ya esta entregado y pagado pagado por Cargo Expreso-->
+                <?php  
+                    $dis;
+
+                    if($item['estado_entrega'] == 1 && $item['pago_cargo'] == 1)
+                        $dis = "disabled";
+                    else
+                        $dis = null;
+                ?>
                 <div class="form-group col-md-12 text-center">
-                	<button type="submit" class="btn btn-info" id="actualizar" name="actualizar">Actualizar <span class="icon-ok"></span></button>
+                	<button type="submit" class="btn btn-info" id="actualizar" name="actualizar" <?php echo $dis; ?>>Actualizar <span class="icon-ok"></span></button>
                 	<a href="Envios_controller.php" class="btn btn-warning">Cancelar y Regresar<span class="icon-reply-all"></span></a>
                 </div>   
 			</form>
 			<?php } ?>
 		</div>
-
-
+        
+        <?php if($dis != null){ ?>
+        <div id="alerta-roja" class="elemento">
+            <div id="alerta" class="alert alert-danger text-center" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Imposible Editar:</strong> Este Envío es imposible de editar debido a que ya esta entregado y pagado por Cargo Expreso.
+            </div>
+        </div>
+        <?php }  ?>
 		<hr>
         <footer>
             <p>&copy; 2017 Kiwi Deals.</p>

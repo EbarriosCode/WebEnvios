@@ -27,7 +27,7 @@
 
 		public function getDatosEnvio($id)
 		{
-			$sql = "SELECT id_envio,cliente,telefono,numeroGuia,nombreDepartamento,departamento_fk,nombreProducto,producto_fk,cantidad,precio_envio,fecha,estado_entrega FROM envios E INNER JOIN departamento D ON E.departamento_fk = D.id_departamento INNER JOIN productos P ON E.producto_fk = P.id_producto WHERE id_envio = $id";
+			$sql = "SELECT id_envio,cliente,telefono,numeroGuia,nombreDepartamento,departamento_fk,nombreProducto,producto_fk,cantidad,precio_envio,fecha,estado_entrega,pago_cargo FROM envios E INNER JOIN departamento D ON E.departamento_fk = D.id_departamento INNER JOIN productos P ON E.producto_fk = P.id_producto WHERE id_envio = $id";
 
 			$stmt = $this->db->prepare($sql);
 			
@@ -73,8 +73,55 @@
 			return $this->productos;
 			$this->db = null;
 		}
+
+		public function descontarExistenciaProductos($id,$resta)
+		{
+			$sql = "UPDATE productos SET existencia=existencia-'$resta' WHERE id_producto='$id'";
+			$rs = $this->db->prepare($sql);
+			$descExistencia = $rs->execute();
+
+			if($descExistencia){
+				return true;
+				$this->db = null;
+			}
+			else{
+				return false;
+				$this->db = null;
+			}
+			
+			
+		}
+
+		public function ValidaNuevaExistencia($id)
+		{
+			$sql = "SELECT existencia FROM productos WHERE id_producto='$id'";
+			$rs = $this->db->prepare($sql);
+			$rs->execute();
+
+			while($row = $rs->fetch(PDO::FETCH_ASSOC))
+			{
+				$existencia = $row['existencia'];
+			}
+			return $existencia;
+			$this->db = null;
+		}
+
+		// metodo para obtener la cantidad del producto que lleva el envio que se va a editar
+		public function getCantidadEnvio($id)
+		{
+			$sql = "SELECT id_envio,cliente,cantidad FROM envios WHERE id_envio='$id'";
+			$rs = $this->db->prepare($sql);
+			$rs->execute();
+
+			while($row = $rs->fetch(PDO::FETCH_ASSOC))
+			{
+				$existencia = $row['cantidad'];
+			}
+			return $existencia;
+			$this->db = null;
+		}
 	}
-/*
-	$r = new EnviosEdit();
-		echo json_encode($r->getDatosEnvio(10));*/
+
+	/*$r = new EnviosEdit();
+	echo json_encode($r->getCantidadEnvio(22));*/
  ?>

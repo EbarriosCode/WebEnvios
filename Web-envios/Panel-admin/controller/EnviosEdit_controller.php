@@ -26,10 +26,29 @@
 		$fecha = $_POST['fecha'];
 		$estado = $_POST['status'];
 
-		$editar = $inst->editar($idEdit,$cliente,$telefono,$numeroGuia,$departamento,$producto,$cantidad,$precio,$fecha,$estado);
+		// objeto para validar si la cantidad que viene del form edit es igual a la que ya estaba guarda en al bd
+		$cant = new EnviosEdit();
+		$getCantidadEnvio = $cant->getCantidadEnvio($idEdit);
+		//echo "Cantidad que trae el form: ".$cantidad;
+		$cantidadAux = $cantidad;
+		if($getCantidadEnvio == $cantidad){
+			
+			$cantidad = null;
+		//	echo "Son iguales la cantidad del form la cambio a: ".$cantidad;
 
-		if($editar)
+		}
+
+		// objetos para descontar y validar la existencia a la hora de hacer un envio
+		$descontarExistencia = new EnviosEdit();
+		$existencia = new EnviosEdit();
+		
+		if($existencia->ValidaNuevaExistencia($producto) > $cantidad)
+		{
+			$editar = $inst->editar($idEdit,$cliente,$telefono,$numeroGuia,$departamento,$producto,$cantidadAux,$precio,$fecha,$estado);
+
+			if($editar)
 			{
+				$descontarExistencia->descontarExistenciaProductos($producto,$cantidad);
 				echo "<script>alert('Registro Actualizado Correctamente');";
 				echo "window.location.href='Envios_controller.php'</script>";
 			}
@@ -37,7 +56,13 @@
 			{
 				echo "<script>alert('No se Actualizo el registro');</script>";
 				echo "<script>window.location.href='Envios_controller.php'</script>";
-			}
+			}  
+		}
+		else
+		{
+			echo "<script>alert('Imposible actualizar la existencia es menor a lo que está intentando enviar!');</script>";
+				echo "<script>window.location.href='Envios_controller.php'</script>";
+		}  
 	}
 
 	// cargar combos de departamento y producto
