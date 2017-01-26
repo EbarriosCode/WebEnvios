@@ -21,7 +21,7 @@
 				
 				$sql = "SELECT id_envio,cliente,telefono,numeroGuia,nombreDepartamento,nombreProducto,cantidad,precio_envio,fecha,estado_entrega,nombreEstado,pago_cargo FROM enviosglosh E 
 				INNER JOIN departamento D ON E.departamento_fk = D.id_departamento 
-				INNER JOIN productos P ON E.producto_fk = P.id_producto 
+				INNER JOIN productosglosh P ON E.producto_fk = P.id_producto 
 				INNER JOIN estado_envios S ON E.estado_entrega = S.id_estado
 														WHERE cliente LIKE '%".$valor."%'											
 														  OR telefono LIKE '%".$valor."%'
@@ -91,7 +91,7 @@
 
 		public function editar($id,$producto,$precio,$descripcion,$existencia)
 		{
-			$sql = "UPDATE productos SET nombreProducto='$producto',precio=$precio,descripcion='$descripcion',existencia=$existencia WHERE id='$id'";
+			$sql = "UPDATE productosglosh SET nombreProducto='$producto',precio=$precio,descripcion='$descripcion',existencia=$existencia WHERE id='$id'";
 			$stmt = $this->db->prepare($sql);
 			$result = $stmt->execute();
 
