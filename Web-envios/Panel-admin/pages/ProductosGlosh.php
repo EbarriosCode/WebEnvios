@@ -135,7 +135,7 @@
             <div class="tab-pane active" id="tab_consultar">
                 <div class="row form-horizontal">
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h2>Productos Registrados Kiwi por Mayor</h2></div>
+                        <div class="panel-heading"><h2>Productos Registrados Glosh</h2></div>
                         <div class="panel-body">
                             <div class="form-group">
                                 <div class="col-xs-4 text-right">
@@ -144,7 +144,7 @@
                                 </div>
                                 
                                 <div class="col-xs-4 text-rigt">
-                                    <form action="../controller/Productos_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Ingrese cualquier dato referente al producto"/>
+                                    <form action="../controller/ProductosGlosh_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Ingrese cualquier dato referente al producto"/>
                                 </div>
 
                                 <div class="col-xs-4 text-left">
@@ -240,7 +240,7 @@
         </h5>
         <hr>
         <footer>
-            <p>&copy; 2016 Kiwi Deals.</p>
+            <p>&copy; 2017 Kiwi Deals.</p>
         </footer> 
  
                  
@@ -374,7 +374,7 @@
         {
            if (window.confirm("Esta seguro que desea eliminar este registro?") == true)
               {
-                 window.location = "Productos_controller.php?idProducto="+id+"&accion=borrar";
+                 window.location = "ProductosGlosh_controller.php?idProducto="+id+"&accion=borrar";
               }
         }
     </script>

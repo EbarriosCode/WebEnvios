@@ -1,6 +1,6 @@
 <?php 
 
-	class Productos{
+	class ProductosGlosh{
 		private $conn,$db,$productos;
 
 		public function __construct()
@@ -16,7 +16,7 @@
 			if($inicio!==false && $no_registros!==false)
 			{
 				
-				$sql = "SELECT * FROM productos WHERE nombreProducto LIKE '%".$valor."%' 
+				$sql = "SELECT * FROM productosglosh WHERE nombreProducto LIKE '%".$valor."%' 
 												   OR precio LIKE '%".$valor."%'
 												   OR descripcion LIKE '%".$valor."%'
 												   OR existencia LIKE '%".$valor."%'
@@ -25,7 +25,7 @@
 
 			else
 			{
-				$sql = "SELECT * FROM productos ORDER BY id_producto ASC";
+				$sql = "SELECT * FROM productosglosh ORDER BY id_producto ASC";
 			}
 
 			$stmt = $this->db->prepare($sql);
@@ -43,7 +43,7 @@
 
 		public function insertar($producto,$precio,$descripcion,$existencia)
 		{		
-			$sql = "INSERT INTO productos(nombreProducto,precio,descripcion,existencia) VALUES('$producto',$precio,'$descripcion',$existencia)";
+			$sql = "INSERT INTO productosglosh(nombreProducto,precio,descripcion,existencia) VALUES('$producto',$precio,'$descripcion',$existencia)";
 			$stmt = $this->db->prepare($sql);
 			$result = $stmt->execute();
 
@@ -60,7 +60,7 @@
 
 		public function eliminar($id)
 		{
-			$sql = "DELETE FROM productos WHERE id_producto='$id'";
+			$sql = "DELETE FROM productosglosh WHERE id_producto='$id'";
 			$stmt = $this->db->prepare($sql);
 			$result = $stmt->execute();
 
@@ -78,7 +78,7 @@
 
 		public function editar($id,$producto,$precio,$descripcion,$existencia)
 		{
-			$sql = "UPDATE productos SET nombreProducto='$producto',precio=$precio,descripcion='$descripcion',existencia=$existencia WHERE id_producto='$id'";
+			$sql = "UPDATE productosglosh SET nombreProducto='$producto',precio=$precio,descripcion='$descripcion',existencia=$existencia WHERE id_producto='$id'";
 			$stmt = $this->db->prepare($sql);
 			$result = $stmt->execute();
 
@@ -95,7 +95,7 @@
 
 		public function numRegistros()
 		{
-			$sql = "SELECT COUNT(*) FROM productos";
+			$sql = "SELECT COUNT(*) FROM productosglosh";
 				$resultado = $this->db->query($sql);
 				$num = $resultado->fetchColumn();
 				return $num;

@@ -5,9 +5,9 @@
 		header(("Location:../../index.php"));
 	}
 
-	require_once("../../Panel-admin/model/Productos_model.php");
-	$obj = new Productos();
-	$objeto = new Productos();
+	require_once("../../Panel-admin/model/ProductosGlosh_model.php");
+	$obj = new ProductosGlosh();
+	$objeto = new ProductosGlosh();
 	// CRUD
 	if(isset($_POST['insertar']))
 	{
@@ -20,7 +20,7 @@
 			if($comprobar)
 			{
 				echo "<script>alert('Registro Almacenado Correctamente');";
-				echo "window.location.href='Productos_controller.php'</script>";
+				echo "window.location.href='ProductosGlosh_controller.php'</script>";
 			}
 			else
 			{
@@ -40,12 +40,12 @@
 			if($verifica)
 			{
 				echo "<script>alert('Registro Actualizado Correctamente');";
-				echo "window.location.href='Productos_controller.php'</script>";
+				echo "window.location.href='ProductosGlosh_controller.php'</script>";
 			}
 			else
 			{
 				echo "<script>alert('Error No se Actualizao el registro');";
-				echo "window.location.href='Productos_controller.php'</script>";
+				echo "window.location.href='ProductosGlosh_controller.php'</script>";
 			}		
 		
 	}
@@ -59,7 +59,7 @@
 			echo $bool = $obj->eliminar($idProducto);
 			if ($bool) {
 				echo "<script>alert('Registro Borrado Correctamente');";
-				echo "window.location.href='Productos_controller.php?true'</script>";
+				echo "window.location.href='ProductosGlosh_controller.php'</script>";
 			}
 			else
 			{
@@ -77,15 +77,15 @@
 	}
 
 	// Inicia paginación
-	$cant_filas = new Productos();
-	$pagination = new Productos();	
+	$cant_filas = new ProductosGlosh();
+	$pagination = new ProductosGlosh();	
 	$no_registros = 5;
 
 	if(isset($_GET['pagina']))
 	 {
 		if($_GET['pagina'] == 1)
 		{
-			header("Location:Productos_controller.php");
+			header("Location:ProductosGlosh_controller.php");
 		}
 		else{
 			$inicio = $_GET['pagina'];
@@ -105,5 +105,5 @@
 	$total_registros = $cant_filas->numRegistros();
 	$total_paginas = ceil($total_registros/$no_registros);
 	
-	require_once("../../Panel-admin/pages/Productos.php");
+	require_once("../../Panel-admin/pages/ProductosGlosh.php");
  ?>
