@@ -121,7 +121,7 @@
 
 <!--  FORMULARIO PARA EDITAR -->
 				<br>	
-				<h2 class="text-center">Edición de Registro de Envios <span class="icon-pencil"></span></h2><hr>	
+				<h2 class="text-center">Edición de Registro de Envios Glosh<span class="icon-pencil"></span></h2><hr>	
 		<div class="row">
 			<form action="EnviosEditGlosh_controller.php" method="POST">
 			<?php foreach($envios as $item){ ?>

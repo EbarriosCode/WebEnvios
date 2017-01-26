@@ -12,7 +12,12 @@
 
 		public function editar($id,$cliente,$telefono,$numeroGuia,$departamento,$producto,$cantidad,$precio,$fecha,$estado)
 		{
-			$sql = "UPDATE envios SET cliente='$cliente', telefono='$telefono', numeroGuia='$numeroGuia', departamento_fk='$departamento', producto_fk='$producto', cantidad='$cantidad', precio_envio='$precio', fecha='$fecha', estado_entrega='$estado' WHERE id_envio='$id'";
+			if($cantidad!= null){
+				$sql = "UPDATE envios SET cliente='$cliente', telefono='$telefono', numeroGuia='$numeroGuia', departamento_fk='$departamento', producto_fk='$producto', cantidad='$cantidad', precio_envio='$precio', fecha='$fecha', estado_entrega='$estado' WHERE id_envio='$id'";
+			}
+			else{
+				$sql = "UPDATE envios SET cliente='$cliente', telefono='$telefono', numeroGuia='$numeroGuia', departamento_fk='$departamento', producto_fk='$producto', precio_envio='$precio', fecha='$fecha', estado_entrega='$estado' WHERE id_envio='$id'";
+			}
 
 			$result = $this->db->prepare($sql);
 			$rs = $result->execute();
@@ -87,9 +92,7 @@
 			else{
 				return false;
 				$this->db = null;
-			}
-			
-			
+			}						
 		}
 
 		public function ValidaNuevaExistencia($id)
@@ -120,8 +123,26 @@
 			return $existencia;
 			$this->db = null;
 		}
+
+		public function sumarExistenciaProductos($id,$suma)
+		{
+			$sql = "UPDATE productos SET existencia=existencia+'$suma' WHERE id_producto='$id'";
+			$rs = $this->db->prepare($sql);
+			$descExistencia = $rs->execute();
+
+			if($descExistencia){
+				return true;
+				$this->db = null;
+			}
+			else{
+				return false;
+				$this->db = null;
+			}
+			
+			
+		}
 	}
 
 	/*$r = new EnviosEdit();
-	echo json_encode($r->getCantidadEnvio(22));*/
+	echo json_encode($r->sumarExistenciaProductos(18,5));*/
  ?>

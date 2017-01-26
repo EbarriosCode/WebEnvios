@@ -12,8 +12,12 @@
 
 		public function editar($id,$cliente,$telefono,$numeroGuia,$departamento,$producto,$cantidad,$precio,$fecha,$estado)
 		{
-			$sql = "UPDATE enviosglosh SET cliente='$cliente', telefono='$telefono', numeroGuia='$numeroGuia', departamento_fk='$departamento', producto_fk='$producto', cantidad='$cantidad', precio_envio='$precio', fecha='$fecha', estado_entrega='$estado' WHERE id_envio='$id'";
-
+			if($cantidad!= null){
+				$sql = "UPDATE enviosglosh SET cliente='$cliente', telefono='$telefono', numeroGuia='$numeroGuia', departamento_fk='$departamento', producto_fk='$producto', cantidad='$cantidad', precio_envio='$precio', fecha='$fecha', estado_entrega='$estado' WHERE id_envio='$id'";
+			}
+			else{
+				$sql = "UPDATE enviosglosh SET cliente='$cliente', telefono='$telefono', numeroGuia='$numeroGuia', departamento_fk='$departamento', producto_fk='$producto', precio_envio='$precio', fecha='$fecha', estado_entrega='$estado' WHERE id_envio='$id'";
+			}
 			$result = $this->db->prepare($sql);
 			$rs = $result->execute();
 
@@ -27,7 +31,7 @@
 
 		public function getDatosEnvio($id)
 		{
-			$sql = "SELECT id_envio,cliente,telefono,numeroGuia,nombreDepartamento,departamento_fk,nombreProducto,producto_fk,cantidad,precio_envio,fecha,estado_entrega FROM enviosglosh E INNER JOIN departamento D ON E.departamento_fk = D.id_departamento INNER JOIN productos P ON E.producto_fk = P.id_producto WHERE id_envio = $id";
+			$sql = "SELECT id_envio,cliente,telefono,numeroGuia,nombreDepartamento,departamento_fk,nombreProducto,producto_fk,cantidad,precio_envio,fecha,estado_entrega FROM enviosglosh E INNER JOIN departamento D ON E.departamento_fk = D.id_departamento INNER JOIN productosglosh P ON E.producto_fk = P.id_producto WHERE id_envio = $id";
 
 			$stmt = $this->db->prepare($sql);
 			
@@ -60,7 +64,7 @@
 
 		public function getProductos()
 		{
-			$sql = "SELECT * FROM productos";
+			$sql = "SELECT * FROM productosglosh";
 			$rs = $this->db->prepare($sql);
 			
 			$rs->execute();
@@ -72,6 +76,69 @@
 
 			return $this->productos;
 			$this->db = null;
+		}
+
+		public function descontarExistenciaProductos($id,$resta)
+		{
+			$sql = "UPDATE productosglosh SET existencia=existencia-'$resta' WHERE id_producto='$id'";
+			$rs = $this->db->prepare($sql);
+			$descExistencia = $rs->execute();
+
+			if($descExistencia){
+				return true;
+				$this->db = null;
+			}
+			else{
+				return false;
+				$this->db = null;
+			}						
+		}
+
+		public function ValidaNuevaExistencia($id)
+		{
+			$sql = "SELECT existencia FROM productosglosh WHERE id_producto='$id'";
+			$rs = $this->db->prepare($sql);
+			$rs->execute();
+
+			while($row = $rs->fetch(PDO::FETCH_ASSOC))
+			{
+				$existencia = $row['existencia'];
+			}
+			return $existencia;
+			$this->db = null;
+		}
+
+		// metodo para obtener la cantidad del producto que lleva el envio que se va a editar
+		public function getCantidadEnvio($id)
+		{
+			$sql = "SELECT id_envio,cliente,cantidad FROM enviosglosh WHERE id_envio='$id'";
+			$rs = $this->db->prepare($sql);
+			$rs->execute();
+
+			while($row = $rs->fetch(PDO::FETCH_ASSOC))
+			{
+				$existencia = $row['cantidad'];
+			}
+			return $existencia;
+			$this->db = null;
+		}
+
+		public function sumarExistenciaProductos($id,$suma)
+		{
+			$sql = "UPDATE productosglosh SET existencia=existencia+'$suma' WHERE id_producto='$id'";
+			$rs = $this->db->prepare($sql);
+			$descExistencia = $rs->execute();
+
+			if($descExistencia){
+				return true;
+				$this->db = null;
+			}
+			else{
+				return false;
+				$this->db = null;
+			}
+			
+			
 		}
 	}
 /*
