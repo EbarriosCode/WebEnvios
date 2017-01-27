@@ -86,14 +86,32 @@
                             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Reportes Gráficos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="../controller/GraficaPie_controller.php"> Gráficas PIE</a>
+                                    <a href="#">Gráficas Kiwi <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="../controller/GraficaPie_controller.php">Gráfica PIE</a>
+                                        </li>
+                                        <li>
+                                            <a href="../controller/GraficaPiramide_controller.php">Gráfica PIRAMIDE</a>
+                                        </li>                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
                                 <li>
-                                    <a href="../controller/GraficaPiramide_controller.php"> Gráficas PIRAMIDE</a>
+                                    <a href="#">Gráficas Glosh <span class="fa arrow"></span></a>
+                                    <ul class="nav nav-third-level">
+                                        <li>
+                                            <a href="../controller/GraficaPieGlosh_controller.php">Gráfica PIE</a>
+                                        </li>
+                                        <li>
+                                            <a href="../controller/GraficaPiramideGlosh_controller.php">Gráfica PIRAMIDE</a>
+                                        </li>                                        
+                                    </ul>
+                                    <!-- /.nav-third-level -->
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
+                        </li> 
                         <li>
                             <a href="#"><i class="fa fa-table fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
