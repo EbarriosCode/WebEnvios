@@ -161,7 +161,7 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'Reporte de Envios Kiwi por Mayor'
+            text: 'Reporte de Envios Glosh'
         },
         tooltip: {
             pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -195,12 +195,12 @@ $(function () {
                     $date = new DateTime($hastaPost);
                     $hasta = $date->format('Y-m-d');
 
-                    $sql = "SELECT cliente,nombreProducto,cantidad FROM envios,productos WHERE envios.producto_fk = productos.id_producto AND fecha >= '$desde' AND fecha <= '$hasta'";
+                    $sql = "SELECT cliente,nombreProducto,cantidad FROM enviosglosh,productosglosh WHERE enviosglosh.producto_fk = productosglosh.id_producto AND fecha >= '$desde' AND fecha <= '$hasta'";
                         
                 }
 
                 else{
-                    $sql = "SELECT cliente,nombreProducto,cantidad FROM envios,productos WHERE envios.producto_fk = productos.id_producto";
+                    $sql = "SELECT cliente,nombreProducto,cantidad FROM enviosglosh,productosglosh WHERE enviosglosh.producto_fk = productosglosh.id_producto";
                 }    
 
                 $stmt = $conn->prepare($sql);

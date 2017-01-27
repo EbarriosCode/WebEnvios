@@ -165,7 +165,7 @@ $(function () {
             marginRight: 100
         },
         title: {
-            text: 'Reporte de Piramide',
+            text: 'Reporte de Piramide Kiwi por Mayor',
             x: -50
         },
         plotOptions: {
@@ -220,7 +220,7 @@ $(function () {
         <br>
 <div class="pull-left"><a href="#modal-busqueda" data-toggle="modal"><button class="btn btn-warning">Consulta por Rango de Fechas <span class="icon-search"></span></button></a></div>
 
-<br><hr><h4 class="center">Detalle de Productos más vendidos</h4>
+<br><hr><h4 class="center">Detalle de Productos más vendidos Kiwi por Mayor</h4>
 
     </head>
     <body>
@@ -233,7 +233,7 @@ $(function () {
 
         <hr>
       <footer>
-        <p><strong>&copy; 2016 Kiwi Deals.</strong></p>
+        <p><strong>&copy; 2017 Kiwi Deals.</strong></p>
       </footer>    
 
 
