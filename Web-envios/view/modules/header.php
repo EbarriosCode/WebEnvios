@@ -47,18 +47,18 @@
 				
 						<ul class="nav navbar-nav navbar-right" >
 							
-							<li class="hovered"> <a href="../../index.php">Inicio<span class="icon-home"></span></a></li>
+							<li class="hovered"> <a href="../controller/PrincipalLogeado_controller.php">Inicio<span class="icon-home"></span></a></li>
 							<!-- empieza dropdown -->
 							<li class="dropdown hovered">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento<span class="icon-cogs"></span></a>
 					          <ul class="dropdown-menu">
-					            <li><a href="../view/modules/EmpresasClientebuscar_vista.php">Productos<span class="icon-users"></span></a></li>					        
+					            <li><a href="../controller/ProductosKiwi_controller.php">Productos<span class="icon-basket"></span></a></li>					        
 					          </ul>
 					        </li>
 							<li class="dropdown hovered">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta de Envios<span class="icon-pencil"></span></a>
 								<ul class="dropdown-menu">
-									<li class="hovered "> <a href="ControlService_controlador.php">Filtrar Envios<span class="icon-search"></span></a></li>
+									<li class="hovered "> <a href="Envios_controller.php">Filtrar Envios<span class="icon-search"></span></a></li>
 								</ul>
 							</li>
 

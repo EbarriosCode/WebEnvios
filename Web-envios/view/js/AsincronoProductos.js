@@ -23,9 +23,9 @@ function lista_Productos(valor,pagina){
 					
 		for(var i=0; i<valores.length; i++)
 		{
-			datos=valores[i]['id']+"*"+valores[i]['nombreProducto']+"*"+valores[i]['precio']+"*"+valores[i]['descripcion']+"*"+valores[i]['existencia'];
+			datos=valores[i]['id_producto']+"*"+valores[i]['nombreProducto']+"*"+valores[i]['precio']+"*"+valores[i]['descripcion']+"*"+valores[i]['existencia'];
 			html+="<tr>"+
-						"<td>"+valores[i]['id']+"</td>"+
+						"<td>"+valores[i]['id_producto']+"</td>"+
 						"<td>"+valores[i]['nombreProducto']+"</td>"+
 						"<td>"+valores[i]['precio']+"</td>"+
 						"<td>"+valores[i]['descripcion']+"</td>"+
