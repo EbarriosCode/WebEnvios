@@ -175,6 +175,7 @@
                                                 <td><strong>CONTRASEÑA</strong></td>
                                                 <td><strong>TIPO USUARIO</strong></td>
                                                 <td><strong>ESTADO</strong></td>
+                                                <td><strong>NIVEL ACCESO</strong></td>
                                                 <td colspan="2"><strong>OPCIONES</strong></td>
                                             </tr>
                                         </thead>
@@ -186,8 +187,10 @@
                                                 <td><?php echo $item['usuario']; ?></td>
                                                 <td><?php echo $item['password']; ?></td>
                                                 <td><?php echo $item['nombreRol']; ?></td>   
-                                                <td><?php echo $item['nombre_estado_usuarios']; ?></td>                                       
-                                                <td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php echo $item['id'];?>','<?php echo $item['nombre']; ?>','<?php echo $item['apellido'];?>','<?php echo $item['usuario'];?>','<?php echo $item['password'];?>','<?php echo $item['tipo'];?>','<?php echo $item['estado'];?>');">Editar <span class="icon-pencil"></span></button></td>
+                                                <td><?php echo $item['nombre_estado_usuarios']; ?></td>
+                                                <td><?php echo $item['nombreAcceso']; ?></td>
+
+                                                <td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php echo $item['id'];?>','<?php echo $item['nombre']; ?>','<?php echo $item['apellido'];?>','<?php echo $item['usuario'];?>','<?php echo $item['password'];?>','<?php echo $item['tipo'];?>','<?php echo $item['estado'];?>','<?php echo $item['acceso'];?>');">Editar <span class="icon-pencil"></span></button></td>
                                                 <td><button class="btn btn-danger" onclick="confirmarRegistro('<?php echo $item['id_producto'];?>');" disabled>Borrar <span class="icon-trash"></span></button> </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -267,6 +270,24 @@
                                                         }
                                                      ?>
                                           </select>
+                                    </div>
+
+                                    <div class="form-group"><label for="">Nivel de Acceso:</label><br>                                                                    
+                                        <select name="acceso" id="acceso" class="form-control" required>
+                                            <option value="">Seleccione: </option>
+                                                <?php 
+                                                        foreach($Accesos as $item)
+                                                        {
+                                                            echo "<option value='$item[id_acceso]'";
+                                                                    /*if($item['id_acceso']==1 || $item['id_acceso']==2)
+                                                                    {
+                                                                        echo "selected";
+                                                                    }*/
+                                                            echo ">".$item['nombreAcceso']."</option>";
+                                                        }
+                                                     ?>
+                                          </select> 
+                                          
                                     </div> 
 
                                     <div class="form-group"><label for="">Estado:</label><br>                                      	                             
@@ -338,6 +359,20 @@
                                           </select>
                                     </div> 
 
+                                     <div class="form-group"><label for="">Nivel de Acceso:</label><br>                                                                    
+                                        <select name="acceso" id="acceso" class="form-control" required>
+                                            <option value="">Seleccione: </option>
+                                                <?php 
+                                                        foreach($Accesos as $item)
+                                                        {
+                                                            echo "<option value='$item[id_acceso]'>".$item['nombreAcceso']."</option>";
+                                                        }
+                                                     ?>
+                                          </select> 
+                                          
+                                    </div>
+
+
                                     <div class="form-group"><label for="">Estado:</label><br>                                      	                             
                                                 <label class="radio-inline">
                                                   <input type="radio" name="status" id="Radio1" value="1" checked> Activo
@@ -346,8 +381,7 @@
                                                   <input type="radio" name="status" id="Radio2" value="0"> Inactivo
                                                 </label> 
                                           
-                                    </div> 
-
+                                    </div>                                    
                             </div>           
 
                                         <div class="modal-footer">
@@ -377,7 +411,7 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
     <script>
-        function CargarDatos(id,nombre,apellido,usuario,password,tipo,estado)
+        function CargarDatos(id,nombre,apellido,usuario,password,tipo,estado,acceso)
         {
             //alert(id+" tipo: "+tipo+" status: "+estado);
             $("#idUsuario").val(id);
@@ -391,6 +425,8 @@
             	$("#Radio1").prop("checked",true);
             else
             	$("#Radio2").prop("checked",true);
+
+            $("#acceso option[value="+ acceso +"]").attr("selected",true);
         }
 
         function confirmarRegistro(id)

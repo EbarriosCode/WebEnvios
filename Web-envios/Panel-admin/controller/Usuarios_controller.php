@@ -9,6 +9,7 @@
 	$Usuarios = $obj->getUsuarios();
 	$Roles = $obj->getRol();
 	$status = $obj->getStatusUser();
+	$Accesos = $obj->getAcceso();
 
 	$crud = new Usuarios();
 
@@ -21,8 +22,9 @@
 		$password = $_POST['password'];
 		$rolUsuario = $_POST['rol'];
 		$status = $_POST['status'];
+		$acceso = $_POST['acceso'];
 
-		$editar = $crud->editar($id,$nombre,$apellido,$nick,$password,$rolUsuario,$status);
+		$editar = $crud->editar($id,$nombre,$apellido,$nick,$password,$rolUsuario,$status,$acceso);
 		if($editar)
 			{
 				echo "<script>alert('Registro Actualizado Correctamente');";
@@ -44,8 +46,9 @@
 		$password = $_POST['password'];
 		$rolUsuario = $_POST['rol'];
 		$status = $_POST['status'];
+		$acceso = $_POST['acceso'];
 
-		$insertar = $crud->insertar($nombre,$apellido,$nick,$password,$rolUsuario,$status);
+		$insertar = $crud->insertar($nombre,$apellido,$nick,$password,$rolUsuario,$status,$acceso);
 		if($insertar)
 			{
 				echo "<script>alert('Registro Guardado Correctamente');";

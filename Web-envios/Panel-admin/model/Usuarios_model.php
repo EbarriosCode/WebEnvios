@@ -1,6 +1,6 @@
 <?php 
 	class Usuarios{
-		private $conn,$db,$usuarios,$roles,$status;
+		private $conn,$db,$usuarios,$roles,$status,$acceso;
 
 		public function __construct()
 		{
@@ -10,14 +10,16 @@
 			$this->usuarios = array();
 			$this->roles = array();
 			$this->status = array();
+			$this->acceso = array();
 		}
 
 		public function getUsuarios()
 		{
-			$sql = "SELECT id,nombre,apellido,usuario,password,tipo,estado,id_rol,nombreRol,id_estado_usuario,nombre_estado_usuarios 
+			$sql = "SELECT id,nombre,apellido,usuario,password,tipo,estado,id_rol,nombreRol,id_estado_usuario,nombre_estado_usuarios,acceso,nombreAcceso 
 					FROM usuarios_sistema User
 					INNER JOIN rol_usuarios Rol ON User.tipo = Rol.id_rol
-					INNER JOIN estado_usuarios Estado ON User.estado = Estado.id_estado_usuario ORDER BY User.id ASC";
+					INNER JOIN estado_usuarios Estado ON User.estado = Estado.id_estado_usuario 
+					INNER JOIN acceso_usuarios Acceso ON User.acceso = Acceso.id_acceso	ORDER BY User.id ASC";
 
 			$rs = $this->db->prepare($sql);
 			$rs->execute();
@@ -61,9 +63,24 @@
 			$this->db = null;
 		}
 
-		public function editar($id,$nombre,$apellido,$nick,$password,$rolUsuario,$status)
+		public function getAcceso()
 		{
-			$sql = "UPDATE usuarios_sistema SET nombre='$nombre', apellido='$apellido', usuario='$nick', password='$password', tipo='$rolUsuario', estado='$status' WHERE id='$id'";
+			$sql = "SELECT id_acceso,nombreAcceso FROM acceso_usuarios";
+			$rs = $this->db->prepare($sql);
+			$rs->execute();
+
+			while($row = $rs->fetch(PDO::FETCH_ASSOC))
+			{
+				$this->acceso[] = $row;
+			}
+
+			return $this->acceso;
+			$this->db = null;
+		}
+
+		public function editar($id,$nombre,$apellido,$nick,$password,$rolUsuario,$status,$acceso)
+		{
+			$sql = "UPDATE usuarios_sistema SET nombre='$nombre', apellido='$apellido', usuario='$nick', password='$password', tipo='$rolUsuario', estado='$status', acceso='$acceso' WHERE id='$id'";
 			$rs = $this->db->prepare($sql);
 			$bool = $rs->execute();
 
@@ -80,9 +97,9 @@
 
 		}
 
-		public function insertar($nombre,$apellido,$nick,$password,$rolUsuario,$status)
+		public function insertar($nombre,$apellido,$nick,$password,$rolUsuario,$status,$acceso)
 		{
-			$sql = "INSERT INTO usuarios_sistema (nombre,apellido,usuario,password,tipo,estado) VALUES('$nombre','$apellido','$nick','$password','$rolUsuario','$status')";
+			$sql = "INSERT INTO usuarios_sistema (nombre,apellido,usuario,password,tipo,estado,acceso) VALUES('$nombre','$apellido','$nick','$password','$rolUsuario','$status','$acceso')";
 			$rs = $this->db->prepare($sql);
 			$bool = $rs->execute();
 
@@ -110,5 +127,5 @@
 	}
 
 	/*$r = new Usuarios();
-	echo json_encode($r->getStatusUser()); */
+	echo json_encode($r->getUsuarios());*/
  ?>
