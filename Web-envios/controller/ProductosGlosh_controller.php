@@ -1,11 +1,11 @@
 <?php 
-	session_start();
-		//echo $_SESSION['Usuario'];
-	if (!isset($_SESSION['Usuario'])) {
+		session_start();
+		
+		if (!isset($_SESSION['Usuario'])) {
 			header(("Location:../index.php"));
-	}
+		}
 
-	require_once("../model/ProductosKiwi_model.php");
+	require_once("../model/ProductosGlosh_model.php");
 	
 	// búsqueda
 	$buscar = "";
@@ -23,7 +23,7 @@
 	 {
 		if($_GET['pagina'] == 1)
 		{
-			header("Location:ProductosKiwi_controller.php");
+			header("Location:ProductosGlosh_controller.php");
 		}
 		else{
 			$inicio = $_GET['pagina'];
@@ -45,7 +45,6 @@
 
 
 	// fin paginación
-	
 	$obj = new Productos();
 	$objeto = new Productos();
 	// CRUD
@@ -60,7 +59,7 @@
 			if($comprobar)
 			{
 				echo "<script>alert('Registro Almacenado Correctamente');";
-				echo "window.location.href='ProductosKiwi_controller.php'</script>";
+				echo "window.location.href='ProductosGlosh_controller.php'</script>";
 			}
 			else
 			{
@@ -73,7 +72,7 @@
 		if(isset($_GET['pagina']))
 			$pagina = $_GET['pagina'];
 		else
-			$pagina = 1; 
+			$pagina = 1;
 
 		 $id = $_POST['idProducto'];
 		 $producto = $_POST['nombre'];
@@ -88,7 +87,7 @@
 			if($verifica)
 			{
 				echo "<script>alert('Registro Actualizado Correctamente');</script>";
-				echo "<script>window.location.href='ProductosKiwi_controller.php?pagina=$pagina'</script>";
+				echo "<script>window.location.href='ProductosGlosh_controller.php?pagina=$pagina'</script>";
 			}
 			else
 			{
@@ -100,6 +99,11 @@
 	
 	if(isset($_GET['accion']))
 	{
+		if(isset($_GET['pagina']))
+			$pagina = $_GET['pagina'];
+		else
+			$pagina = 1;
+
 		//echo "Entre al borrar";
 		if(strcmp($_GET['accion'],"borrar") == 0 ){
 			$idProducto = $_GET['idProducto'];
@@ -107,7 +111,7 @@
 			echo $bool = $obj->eliminar($idProducto);
 			if ($bool) {
 				echo "<script>alert('Registro Borrado Correctamente');";
-				echo "window.location.href='ProductosKiwi_controller.php?true'</script>";
+				echo "window.location.href='ProductosGlosh_controller.php?pagina=$pagina'</script>";
 			}
 			else
 			{
@@ -115,5 +119,6 @@
 			}
 		}
 	}
-	require_once("../view/modules/ProductosKiwi_view.php");	
+
+	require_once("../view/modules/ProductosGlosh_view.php");	
  ?>

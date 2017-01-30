@@ -56,7 +56,7 @@
 					          </ul>
 					        </li>
 							<li class="dropdown hovered">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta de Envios<span class="icon-pencil"></span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta de Envios<span class="icon-truck"></span></a>
 								<ul class="dropdown-menu">
 									<li class="hovered "> <a href="Envios_controller.php">Filtrar Envios<span class="icon-search"></span></a></li>
 								</ul>
