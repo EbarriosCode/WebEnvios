@@ -113,7 +113,7 @@
                             <!-- /.nav-second-level -->
                         </li> 
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="../controller/Productos_controller.php">Productos Kiwi</a>
@@ -126,7 +126,7 @@
                         </li>        
                         
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
+                            <a href="#"><i class="icon-truck"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="../controller/Envios_controller.php"> Envios Kiwi</a>
@@ -167,8 +167,13 @@
     <link rel="stylesheet" type="text/css" href="../../view/css/estilos.css">
     <link rel="stylesheet" type="text/css" href="../../view/css/css-font/fontello.css">
     <link rel="stylesheet" type="text/css" href="../../view/css/jquery.littlelightbox.css" >
-      <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
-        <script src="../../view/js/ajaxGoogle.js"></script>
+       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <!--<script src="../../view/js/ajaxGoogle.js"></script>-->
+
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script> 
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
  
         <script type="text/javascript">
 $(function () {
@@ -302,10 +307,7 @@ $(function () {
 
     <!-- Bootstrap Core JavaScript -->
 
-    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script> 
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+    
 
     <!-- Flot Charts JavaScript -->
     <script src="../vendor/flot/excanvas.min.js"></script>

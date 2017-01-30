@@ -11,6 +11,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,700,700italic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/css-font/fontello.css">
+	<link rel="stylesheet" type="text/css" href="css/fontello.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css" />
 </head>
 
@@ -90,7 +91,7 @@
 				<li><a href="contacto.html" class="icon-mail-1">  Contacto</a></li>
 
 				<li><a href="acerca.html" class="icon-info-circled">Acerca de</a></li>
-				<li><a href="#modal-insertar" data-toggle="modal"><span class="icon-thumbs-up"></span>Portal</a></li>
+				<li><a href="#modal-insertar" data-toggle="modal"><span class="icon-archive"></span>Portal</a></li>
 
 			</ul>
 

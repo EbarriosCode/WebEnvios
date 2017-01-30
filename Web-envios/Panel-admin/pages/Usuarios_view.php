@@ -113,7 +113,7 @@
                             <!-- /.nav-second-level -->
                         </li> 
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="../controller/Productos_controller.php">Productos Kiwi</a>
@@ -125,7 +125,7 @@
                             <!-- /.nav-second-level -->
                         </li>        
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
+                            <a href="#"><i class="icon-truck"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="../controller/Envios_controller.php"> Envios Kiwi</a>

@@ -71,7 +71,6 @@
 		}
 	}
 
-
 	// búsqueda
 	$buscar = "";
 	if(isset($_POST['buscar']))

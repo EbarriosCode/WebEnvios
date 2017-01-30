@@ -30,6 +30,7 @@
     <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
 
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../../view/css/css-font/fontello.css">
 
 
 </head>
@@ -119,7 +120,7 @@
                             <!-- /.nav-second-level -->
                         </li>                        
                         <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Productos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="../controller/Productos_controller.php">Productos Kiwi</a>
@@ -132,7 +133,7 @@
                         </li>        
                         <!-- envios -->
                         <li>
-                            <a href="#"><i class="fa fa-edit fa-fw"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
+                            <a href="#"><i class="icon-truck"></i> Mantenimiento de Envios<span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
                                 <li>
                                     <a href="../controller/Envios_controller.php"> Envios Kiwi</a>

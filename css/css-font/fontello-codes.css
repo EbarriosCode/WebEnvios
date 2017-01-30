@@ -2,7 +2,6 @@
 .icon-user:before { content: '\e800'; } /* '' */
 .icon-users:before { content: '\e801'; } /* '' */
 .icon-home:before { content: '\e802'; } /* '' */
-.icon-info-circled:before { content: '\e803'; } /* '' */
 .icon-lock-open:before { content: '\e804'; } /* '' */
 .icon-lock:before { content: '\e805'; } /* '' */
 .icon-attach:before { content: '\e806'; } /* '' */
@@ -35,11 +34,19 @@
 .icon-archive:before { content: '\e821'; } /* '' */
 .icon-bell:before { content: '\e822'; } /* '' */
 .icon-search:before { content: '\e823'; } /* '' */
+.icon-contacts:before { content: '\e824'; } /* '' */
+.icon-calendar:before { content: '\e825'; } /* '' */
+.icon-truck:before { content: '\e826'; } /* '' */
 .icon-link-ext:before { content: '\f08e'; } /* '' */
+.icon-money:before { content: '\f0d6'; } /* '' */
 .icon-sitemap:before { content: '\f0e8'; } /* '' */
+.icon-rocket:before { content: '\f135'; } /* '' */
+.icon-youtube:before { content: '\f167'; } /* '' */
+.icon-taxi:before { content: '\f1ba'; } /* '' */
 .icon-database:before { content: '\f1c0'; } /* '' */
 .icon-chart-pie:before { content: '\f200'; } /* '' */
 .icon-chart-line:before { content: '\f201'; } /* '' */
+.icon-motorcycle:before { content: '\f21c'; } /* '' */
 .icon-user-times:before { content: '\f235'; } /* '' */
 .icon-hourglass-o:before { content: '\f250'; } /* '' */
 .icon-hand-pointer-o:before { content: '\f25a'; } /* '' */
@@ -47,3 +54,5 @@
 .icon-commenting-o:before { content: '\f27b'; } /* '' */
 .icon-usb:before { content: '\f287'; } /* '' */
 .icon-blind:before { content: '\f29d'; } /* '' */
+.icon-facebook-squared:before { content: '\f30e'; } /* '' */
+.icon-instagram:before { content: '\f32d'; } /* '' */
