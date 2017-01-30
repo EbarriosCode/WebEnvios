@@ -17,6 +17,7 @@
 					$id = $autenticado['id'];
 					$type = $autenticado['tipo'];
 					$status = $autenticado['estado'];
+					$acceso = $autenticado['acceso'];
 				}
 				//echo "Existe -- Usuario";
 				session_start();
@@ -24,6 +25,7 @@
 				$_SESSION['tipo'] = $type;
 				$_SESSION['estado'] = $status;
 				$_SESSION['idUser'] = $id;
+				$_SESSION['acceso'] = $acceso;
 				//echo $_SESSION['Usuario'];
 
 				header("Location:PrincipalLogeado_controller.php?boolean=true&user=$usu&tipo=$type&estado=$status");		

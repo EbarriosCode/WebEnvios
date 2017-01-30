@@ -21,8 +21,9 @@
 	</style>
 	<?php 
 		if(isset($_SESSION['tipo']) &&  $_SESSION['tipo']== 1)
-      {
+      { 
      ?>
+       		
        		<style>.dis{pointer-events:auto;opacity:1;cursor: pointer;}</style> 
       <?php } ?>	
 </head>
@@ -48,24 +49,64 @@
 						<ul class="nav navbar-nav navbar-right" >
 							
 							<li class="hovered"> <a href="../controller/PrincipalLogeado_controller.php">Inicio<span class="icon-home"></span></a></li>
+					<!-- Acceso si es Admin -->
+					<?php if(isset($_SESSION['tipo']) &&  $_SESSION['tipo']== 1){ ?>
 							<!-- empieza dropdown -->
 							<li class="dropdown hovered">
 					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento<span class="icon-cogs"></span></a>
 					          <ul class="dropdown-menu">
-					            <li><a href="../controller/ProductosKiwi_controller.php">Productos<span class="icon-basket"></span></a></li>					        
+					            <li><a href="../controller/ProductosKiwi_controller.php">Productos Kiwi<span class="icon-basket"></span></a></li>
+					            <li><a href="../controller/ProductosGlosh_controller.php">Productos Glosh<span class="icon-flag"></span></a></li>					        
 					          </ul>
 					        </li>
 							<li class="dropdown hovered">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta de Envios<span class="icon-truck"></span></a>
 								<ul class="dropdown-menu">
-									<li class="hovered "> <a href="EnviosKiwi_controller.php">Filtrar Envios<span class="icon-search"></span></a></li>
+									<li class="hovered "> <a href="EnviosKiwi_controller.php">Filtrar Envios Kiwi<span class="icon-search"></span></a></li>
+									<li class="hovered "> <a href="EnviosGlosh_controller.php">Filtrar Envios Glosh<span class="icon-tripadvisor"></span></a></li>
 								</ul>
 							</li>
-
-                            <li class=" hovered dis ">
+							<li class=" hovered dis ">
                                 <a href="../Panel-admin">P-admin<span class="icon-chart-line"></span></a>
                             </li>
-							
+					<?php } ?>
+					<!-- Fin  Acceso si es Usuario Admin -->
+					
+					<!-- Acceso si es Usuario Kiwi -->
+                    <?php if(isset($_SESSION['tipo']) &&  $_SESSION['tipo']== 0 && $_SESSION['acceso'] == 2){ ?>       
+							<!-- empieza dropdown -->
+							<li class="dropdown hovered">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento<span class="icon-cogs"></span></a>
+					          <ul class="dropdown-menu">
+					            <li><a href="../controller/ProductosKiwi_controller.php">Productos Kiwi<span class="icon-basket"></span></a></li>
+					          </ul>
+					        </li>
+							<li class="dropdown hovered">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta de Envios<span class="icon-truck"></span></a>
+								<ul class="dropdown-menu">
+									<li class="hovered "> <a href="EnviosKiwi_controller.php">Filtrar Envios Kiwi<span class="icon-search"></span></a></li>
+								</ul>
+							</li>	
+                    <?php } ?>
+					<!-- Fin Acceso si es Usuario Kiwi -->
+
+					<!-- Acceso si es Usuario Glosh -->
+                    <?php if(isset($_SESSION['tipo']) &&  $_SESSION['tipo']== 0 && $_SESSION['acceso'] == 3){ ?>       
+							<!-- empieza dropdown -->
+							<li class="dropdown hovered">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mantenimiento<span class="icon-cogs"></span></a>
+					          <ul class="dropdown-menu">
+					            <li><a href="../controller/ProductosGlosh_controller.php">Productos Glosh<span class="icon-basket"></span></a></li>
+					          </ul>
+					        </li>
+							<li class="dropdown hovered">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Consulta de Envios<span class="icon-truck"></span></a>
+								<ul class="dropdown-menu">
+									<li class="hovered "> <a href="EnviosGlosh_controller.php">Filtrar Envios Glosh<span class="icon-search"></span></a></li>
+								</ul>
+							</li>	
+                    <?php } ?>
+					<!-- Fin Acceso si es Usuario Glosh -->					
 							<li class="hovered"><a href="../controller/cerrar_sesion.php">Salir<span class="icon-reply-all"></span></a></li>
 						</ul>
 

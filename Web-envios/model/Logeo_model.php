@@ -43,7 +43,7 @@
 
 		public function autenticar($user)
 		{
-			$sql = "SELECT id,tipo,estado FROM usuarios_sistema WHERE usuario='$user'";
+			$sql = "SELECT id,tipo,estado,acceso FROM usuarios_sistema WHERE usuario='$user'";
 			$stmt = $this->conn->prepare($sql);
 			$stmt->execute();
 
