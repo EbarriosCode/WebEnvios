@@ -33,6 +33,10 @@
         .botonNuevo{
             float: right;
         }
+
+        .devolucion{
+            background: #F3F781;
+        }
     </style>
 
 
@@ -214,7 +218,7 @@
                                         </thead>
                                         <tbody>
                                         <?php foreach($enviosGlosh as $item): ?>
-                                            <tr <?php  if($item['pago_cargo']==1) echo "class=danger"; ?>>
+                                            <tr <?php  if($item['pago_cargo']==1) echo "class=danger"; ?> <?php if($item['estado_entrega'] == 2) echo "class=devolucion";?>>
                                                 <td><?php echo $item['id_envio']; ?></td>
                                                 <td><?php echo $item['cliente']; ?></td>
                                                 <td><?php echo $item['telefono']; ?></td>
