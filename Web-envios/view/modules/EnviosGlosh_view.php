@@ -24,7 +24,7 @@
                 <div class="row form-horizontal">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                                <h2>Envios Registrados Kiwi por Mayor</h2>
+                                <h2>Envios Registrados Glosh</h2>
                                 <div class="text-right"><button class="btn" data-toggle='modal' data-target='#modal-busqueda'>Consulta por Rango de Fechas <span class="icon-calendar"></span>
                                 </button></div>
                         </div>
@@ -36,7 +36,7 @@
                                 </div>
                                 
                                 <div class="col-xs-5 text-left">
-                                    <form action="EnviosKiwi_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Cliente, Departamento, Número de guía, Producto o Estado"/>
+                                    <form action="EnviosGlosh_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Cliente, Departamento, Número de guía, Producto o Estado"/>
                                 </div>
                                 
                                 <br><br>
@@ -84,7 +84,7 @@
                                                         echo date_format($fecha, 'd/m/Y');
                                                      ?></td>
                                                 <td><?php echo $item['nombreEstado']; ?></td>                    
-                                                <td><a href="EnviosKiwiEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
+                                                <td><a href="EnviosGloshEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
 
                                                 <!--<td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php /*echo $item['id_envio'];?>','<?php echo $item['cliente']; ?>','<?php echo $item['telefono'];?>','<?php echo $item['numeroGuia'];?>','<?php echo $item['nombreDepartamento'];?>','<?php echo $item['nombreProducto']; ?>','<?php echo $item['cantidad']; ?>','<?php echo $item['precio_envio']; ?>','<?php echo $item['fecha']; ?>','<?php echo $item['estado_entrega']; */ ?>');">Editar <span class="icon-pencil"></span></button></td>
                                                 -->
@@ -194,12 +194,12 @@
                 }
             };
             
-            peticion.open("GET","RecuperarExistencia_controller.php?parametro="+str,true);
+            peticion.open("GET","RecuperarExistenciaGlosh_controller.php?parametro="+str,true);
             peticion.send();
         }
     </script>
 
-    <!-- CODIGO MODAL PARA NUEVO ENVIO DE KIWI -->
+    <!-- CODIGO MODAL PARA NUEVO ENVIO DE GLOSH -->
                             <div class="modal fade" id="modal-insertar">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -331,7 +331,7 @@
                                 </div>
                             </div>    
 
-<!-- MODAL PARA FILTRAR POR RANGO DE FECHA ENVIOS DE KIWI -->
+<!-- MODAL PARA FILTRAR POR RANGO DE FECHA ENVIOS DE GLOSH -->
 
                 <div class="modal fade" id="modal-busqueda">
                     <div class="modal-dialog">
@@ -342,7 +342,7 @@
                             </div>
                              
                             <div class="modal-body">
-                                <form action="ReporteEnviosKiwi_controller.php" method="POST">                                   
+                                <form action="ReporteEnviosGlosh_controller.php" method="POST">                                   
 
                                     <div class="form-group">
                                         <label for="desde">Desde:</label>
@@ -406,7 +406,7 @@
         {
            if (window.confirm("Esta seguro que desea eliminar este registro?") == true)
               {
-                 window.location = "EnviosKiwi_controller.php?idEnvio="+id+"&accion=borrar";
+                 window.location = "EnviosGlosh_controller.php?idEnvio="+id+"&accion=borrar";
               }
         }
     </script>                

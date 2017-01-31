@@ -4,7 +4,7 @@
 	if (!isset($_SESSION['Usuario'])) {
 		header(("Location:../index.php"));
 	}
-	require_once("../model/EnviosKiwi_model.php");
+	require_once("../model/EnviosGlosh_model.php");
 	$obj = new Envios();
 	$objeto = new Envios();
 
@@ -24,7 +24,7 @@
 	 {
 		if($_GET['pagina'] == 1)
 		{
-			header("Location:EnviosKiwi_controller.php");
+			header("Location:EnviosGlosh_controller.php");
 		}
 		else{
 			$inicio = $_GET['pagina'];
@@ -85,7 +85,7 @@
 			{	
 				$descontarExistencia->descontarExistenciaProductos($producto,$cantidad);
 				echo "<script>alert('Registro Guardado Correctamente');";
-				echo "window.location.href='EnviosKiwi_controller.php'</script>";
+				echo "window.location.href='EnviosGlosh_controller.php'</script>";
 			}
 
 			else
@@ -99,7 +99,7 @@
 		else
 		{
 			echo "<script>alert('Error No se Guardo el registro Porque la existencia es menor a lo que desea Enviar');";
-			echo "window.location.href='EnviosKiwi_controller.php'</script>";
+			echo "window.location.href='EnviosGlosh_controller.php'</script>";
 		}				
 	}
 
@@ -113,7 +113,7 @@
 			echo $bool = $obj->eliminar($idEnvio);
 			if ($bool) {
 				echo "<script>alert('Registro Borrado Correctamente');";
-				echo "window.location.href='EnviosKiwi_controller.php?true'</script>";
+				echo "window.location.href='EnviosGloshi_controller.php?true'</script>";
 			}
 			else
 			{
@@ -122,5 +122,5 @@
 		}
 	}
 
-	require_once("../view/modules/EnviosKiwi_view.php");
+	require_once("../view/modules/EnviosGlosh_view.php");
  ?>
