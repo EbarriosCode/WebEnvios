@@ -11,7 +11,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:400,300italic,700,700italic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/css-font/fontello.css">
-	<link rel="stylesheet" type="text/css" href="css/fontello.css">
+	<!--<link rel="stylesheet" type="text/css" href="css/fontello.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/animate.css" />
 </head>
 
@@ -21,6 +21,10 @@
 		}
 
 		.inactivo{
+			display: none;
+		}
+
+		.sinPermisos{
 			display: none;
 		}
 	</style>
@@ -36,6 +40,14 @@
 		if(isset($_GET['status'])){
 			if($_GET['status'] == 'disabled')
 				echo "<style>.inactivo{display:inline;}</style>";
+
+		}
+
+		if(isset($_GET['rol']))
+		{
+			if(strcmp($_GET['rol'],'fail')==0)
+				echo "<style>.sinPermisos{display:inline;}</style>";
+				//header("Location:Web-envios/controller/cerrar_sesion.php?rol=fail");		
 		}
 	 ?>
 
@@ -51,11 +63,19 @@
 	</div>
 
 
-		<div id="alerta-roja" class="inactivo">
+	<div id="alerta-roja" class="inactivo">
 		<div class="alert alert-danger" role="alert">
 				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
 			  </span></button>
 			  <strong>Error de Autenticación:</strong> Usuario Inactivo Comuniquese con el Administrador del Sistema.
+		</div>
+	</div>
+
+	<div id="alerta-roja" class="sinPermisos">
+		<div class="alert alert-danger" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
+			  </span></button>
+			  <strong>Error de Autenticación:</strong> No tiene los permisos suficientes para ver el contenido del Sistema.
 		</div>
 	</div>
 	</div>

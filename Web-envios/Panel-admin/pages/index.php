@@ -1,9 +1,12 @@
 <?php 
-        session_start();
+    session_start();
         
-        if (!isset($_SESSION['Usuario'])) {
-            header(("Location:../index.php"));
-        }
+    if (!isset($_SESSION['Usuario'])) {
+        header("Location:../../../index.php");
+    }
+
+    if($_SESSION['acceso'] != 1)
+        header("Location:../../../index.php?rol=fail");   
  ?>
 <!DOCTYPE html>
 <html lang="en">

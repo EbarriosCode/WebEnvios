@@ -4,6 +4,10 @@
 	if (!isset($_SESSION['Usuario'])) {
 		header(("Location:../../index.php"));
 	}
+
+	if($_SESSION['acceso'] == 3)
+		header(("Location:../../index.php?rol=fail"));
+	
 	require_once("../model/ReporteEnviosKiwi_model.php");
 	$inst = new EnviosReporte();
 

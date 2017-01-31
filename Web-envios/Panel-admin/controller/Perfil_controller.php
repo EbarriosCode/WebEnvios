@@ -1,9 +1,13 @@
 <?php 
-        session_start();
+    session_start();
         
-        if (!isset($_SESSION['Usuario'])) {
-            header(("Location:../index.php"));
-        }
+    if (!isset($_SESSION['Usuario'])) {
+        header("Location:../../../index.php");
+    }
+
+    if($_SESSION['acceso'] != 1)
+        header("Location:../../../index.php?rol=fail"); 
+    
         require_once("../../Panel-admin/model/Perfil_model.php");
         $inst = new User();
         $user = $inst->getUsuarios($_SESSION['idUser']);

@@ -1,9 +1,12 @@
 <?php
-	session_start();
-	//echo $_SESSION['Usuario'];
-	if (!isset($_SESSION['Usuario'])) {
-		header(("Location:../../index.php"));
-	} 
+    session_start();
+        
+    if (!isset($_SESSION['Usuario'])) {
+        header("Location:../../../index.php");
+    }
+
+    if($_SESSION['acceso'] != 1)
+        header("Location:../../../index.php?rol=fail"); 
 	// de aquí para abajo inician operaciones a la tabla de envios de Glosh
 	//Inician los envios de glosh
 	require_once("../../Panel-admin/model/EnviosGlosh_model.php");

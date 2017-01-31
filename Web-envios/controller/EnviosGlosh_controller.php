@@ -2,8 +2,12 @@
 	session_start();
 	//echo $_SESSION['Usuario'];
 	if (!isset($_SESSION['Usuario'])) {
-		header(("Location:../index.php"));
+		header(("Location:../../index.php"));
 	}
+
+	if($_SESSION['acceso'] == 2)
+		header(("Location:../../index.php?rol=fail"));
+
 	require_once("../model/EnviosGlosh_model.php");
 	$obj = new Envios();
 	$objeto = new Envios();
