@@ -105,7 +105,7 @@
         <div id="alerta-roja" class="elemento">
             <div id="alerta" class="alert alert-danger text-center" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <strong>Imposible Editar:</strong> Este Envío es imposible de editar debido a que ya esta entregado y pagado por Cargo Expreso.
+                <strong>Imposible Editar:</strong> Este Envío es imposible de editar por razones de seguridad e integridad de la información.
             </div>
         </div>
         <?php }  ?>
