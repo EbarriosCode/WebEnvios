@@ -11,5 +11,7 @@
 				header(("Location:../../index.php?status=disabled"));				
 		}
 
-	require_once("../view/modules/PrincipalLogeado_view.php");
+	//require_once("../view/modules/PrincipalLogeado_view.php");
+		//require_once("../view/modules/index.php");
+		header("Location:../view/modules/index.php");
  ?>
