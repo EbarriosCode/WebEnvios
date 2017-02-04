@@ -12,6 +12,10 @@
 	<link rel="stylesheet" type="text/css" href="../view/css/jquery.littlelightbox.css" >
 	<link rel="stylesheet" type="text/css" href="../view/css/validarFormEmpresasCliente.css">
 	<style>
+		.dropdown-menu{
+			background: #9ccbc0;
+		}
+
 		#navbar-1{
 			font-family: 'signikalight', sans-serif;			
 			color: #fff;
@@ -39,7 +43,7 @@
 		}
 
 		.hovered:active{
-			background-color: rgb(53, 140, 140);
+			background: rgb(53, 140, 140);
 		} 
 
 		.dis{
@@ -78,7 +82,7 @@
 				
 						<ul class="nav navbar-nav navbar-right" >
 							
-							<li class="hovered"> <a href="../controller/PrincipalLogeado_controller.php">Inicio<span class="icon-home"></span></a></li>
+							<li class="hovered"> <a href="../../controller/PrincipalLogeado_controller.php">Inicio<span class="icon-home"></span></a></li>
 					<!-- Acceso si es Admin -->
 					<?php if(isset($_SESSION['tipo']) &&  $_SESSION['tipo']== 1){ ?>
 							<!-- empieza dropdown -->
@@ -151,6 +155,14 @@
 	<script type="text/javascript" src="../view/js/ajaxGoogle.js"></script>
 	<script type="text/javascript" src="../view/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.littlelightbox.js"></script>
-	
+	<script>
+		$(document).ready(function(){                       
+            $(".dropdown-menu").blur(function(){
+            	 alert("saliendo");
+            });
+        });
+
+
+	</script>
 </body>
 </html>

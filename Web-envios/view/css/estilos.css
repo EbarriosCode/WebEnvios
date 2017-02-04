@@ -24,7 +24,7 @@ h1{
 /*Estilos index*/
 
 .hovered:hover{
-	background-color: rgb(29, 219, 219);
+	background: rgba(0,0,0,.4);
 
 }
 
