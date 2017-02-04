@@ -189,12 +189,20 @@
                                         </thead>
                                         <tbody>
                                         <?php foreach($productos as $item): ?>
-                                            <tr>
+                                            <tr <?php if($item['existencia'] <= 5) echo "class=danger"; ?>>
                                                 <td><?php echo $item['id_producto']; ?></td>
                                                 <td><?php echo $item['nombreProducto']; ?></td>
                                                 <td><?php echo $item['precio']; ?></td>
                                                 <td><?php echo $item['descripcion']; ?></td>
-                                                <td><?php echo $item['existencia']; ?></td>                                          
+                                                <td>
+                                                    <?php echo $item['existencia']; ?>
+                                                    <?php 
+                                                        if($item['existencia'] <= 5 && $item['existencia'] >= 1 )
+                                                            echo "<strong> Pronto a Terminarse</strong>";
+                                                        if ($item['existencia'] == 0)
+                                                            echo "<strong> Agotado! :(</strong>";
+                                                     ?>
+                                                </td>                                          
                                                 <td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php echo $item['id_producto'];?>','<?php echo $item['nombreProducto']; ?>','<?php echo $item['precio'];?>','<?php echo $item['descripcion'];?>','<?php echo $item['existencia'];?>');">Editar <span class="icon-pencil"></span></button></td>
                                                 <td><button class="btn btn-danger" onclick="confirmarRegistro('<?php echo $item['id_producto'];?>');">Borrar <span class="icon-trash"></span></button> </td>
                                             </tr>
