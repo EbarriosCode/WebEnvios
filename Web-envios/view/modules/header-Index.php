@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="shortcut icon" href="view/images/php1.jpg" type="image/x-icon"/>
+	<link rel="shortcut icon" href="view/images/ph.jpg" type="image/x-icon"/>
 
 	<link rel="stylesheet" type="text/css" href="../view/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../view/css/estilos.css">
