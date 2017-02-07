@@ -177,13 +177,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">CRUD</div>
-                                    <div>Envios</div>
+                                    <div>Envios Kiwi</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="../../controller/Servicios_controlador.php">
+                        <a href="../../controller/EnviosKiwi_controller.php">
                             <div class="panel-footer">
-                                <span class="pull-left">Ir a Envios</span>
+                                <span class="pull-left">Ir a Envios Kiwi</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -199,13 +199,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">CRUD</div>
-                                    <div>Productos</div>
+                                    <div>Productos Kiwi</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="../../controller/Proyectos_controlador.php">
+                        <a href="../../controller/ProductosKiwi_controller.php">
                             <div class="panel-footer">
-                                <span class="pull-left">Ir a Productos</span>
+                                <span class="pull-left">Ir a Productos Kiwi</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -221,13 +221,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">CRUD</div>
-                                    <div>Reporte de Envios</div>
+                                    <div>Envios Glosh</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="../../controller/listaControlService_controlador.php">
+                        <a href="../../controller/EnviosGlosh_controller.php">
                             <div class="panel-footer">
-                                <span class="pull-left">Reporte de Envios</span>
+                                <span class="pull-left">Ir a Envios Glosh</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -243,13 +243,13 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">CRUD</div>
-                                    <div>Clientes</div>
+                                    <div>Productos Glosh</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="../../view/modules/EmpresasClientebuscar_vista.php">
+                        <a href="../../controller/ProductosGlosh_controller.php">
                             <div class="panel-footer">
-                                <span class="pull-left">Ir a Clientes</span>
+                                <span class="pull-left">Ir a Productos Glosh</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
