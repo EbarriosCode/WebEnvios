@@ -16,7 +16,7 @@
 		{
 			//if($inicio!==false && $no_registros!==false )
 			//{
-				if($status==0 || $status==1){
+				if($status==0 || $status==1 || $status==2){
 					$sql = "SELECT id_envio,cliente,telefono,numeroGuia,nombreDepartamento,nombreProducto,cantidad,precio_envio,fecha,estado_entrega,pago_cargo FROM enviosglosh E INNER JOIN departamento D ON E.departamento_fk = D.id_departamento INNER JOIN productosglosh P ON E.producto_fk = P.id_producto WHERE fecha>='$fecha1' AND fecha<='$fecha2' AND estado_entrega='$status' ORDER BY id_envio DESC"; //LIMIT $inicio,$no_registros";		
 				}
 

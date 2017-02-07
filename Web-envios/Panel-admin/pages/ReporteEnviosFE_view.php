@@ -380,13 +380,16 @@
 
                                     <div class="form-group"><label for="">Estado:</label><br>
                                                 <label class="radio-inline">
-                                                  <input type="radio" name="status" id="Radio3" value="2" checked> Todos
+                                                  <input type="radio" name="status" id="Radio3" value="3" checked> Todos
                                                 </label>
                                                 <label class="radio-inline">
                                                   <input type="radio" name="status" id="Radio1" value="1"> Entregados
                                                 </label>
                                                 <label class="radio-inline">
                                                   <input type="radio" name="status" id="Radio2" value="0"> Pendientes
+                                                </label>
+                                                <label class="radio-inline">
+                                                  <input type="radio" name="status" id="Radio4" value="2"> Devolución
                                                 </label>
                                     </div>                  
                                     
