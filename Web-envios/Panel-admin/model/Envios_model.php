@@ -175,15 +175,15 @@
 
 			while($row = $rs->fetch(PDO::FETCH_ASSOC))
 			{
-				$existencia = $row['existencia'];
+				$exist = $row['existencia'];
 			}
-			return $existencia;
+			return $exist;
 			$this->db = null;
 		}
 
-		public function Pagado($id,$pagado)
+		public function Pagado($id,$pagado,$numeroGuia)
 		{
-			$sql = "UPDATE envios SET pago_cargo='$pagado' WHERE id_envio='$id'";
+			$sql = "UPDATE envios SET pago_cargo='$pagado' WHERE id_envio='$id' OR numeroGuia='$numeroGuia'";
 			$rs = $this->db->prepare($sql);
 			$verificador = $rs->execute();
 
@@ -206,11 +206,10 @@
 	//,'2017-01-16','2017-01-16'
 	/*$r = new Envios();
 	echo json_encode($r->getEnvios('',0,5));
-
 	$r = new Envios();	
-	echo "Existencia Actual: ".$r->ValidaNuevaExistencia(6);
-	echo " Retorno descontar existencia true o false ->".$r->descontarExistenciaProductos(6,5);
-	echo " Nueva existencia: ".$r->ValidaNuevaExistencia(6);  */
+	for($i=1; $i<6; $i++){
+		echo " Existencia Actual: ".$r->ValidaNuevaExistencia($i);	
+	} */
 
 	/*$r = new Envios();
 	echo $r->Pagado(15,1);*/

@@ -198,7 +198,7 @@
                             <div class="form-group">
                                 
                                     <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover table-bordered">
                                         <thead>
                                             <tr class="info">
                                                 <td><strong>ID</strong></td>
@@ -245,7 +245,8 @@
 
                                                 </td>
                                                 <td> 
-                                                    <form id="formulario" action="" method="POST">                            <input type="hidden" name="id" value="<?php echo $item['id_envio']; ?>">                                               
+                                                    <form id="formulario" action="" method="POST">                            <input type="hidden" name="id" value="<?php echo $item['id_envio']; ?>">
+                                                    <input type="hidden" name="numeroGuia" value="<?php echo $item['numeroGuia']; ?>">                                               
                                                             <label class="checkbox-inline">
                                                                 <input type="checkbox" name="pagado" id="pagado" <?php if($item['pago_cargo']==1){ ?> checked   <?php } ?> value="1">
                                                                 <button  type="submit" name="btn-pagar"><span class="glyphicon glyphicon-usd"></span></button>
@@ -420,36 +421,46 @@
                                             </div>                                        
     
                                             <div class="form-group">
-                                                <button type="button" id="btn-add" class="btn btn-primary">Agregar</button>
+                                                <button type="button" id="btn-add" class="btn btn-primary">Agregar Otro Producto <span class="icon-plus"></span></button>
                                                 <br>
                                                 <table class="table table-bordered" id="tablaProductos">
                                                     <tr>
-                                                        <th><label for="producto">Producto:</label></th>
-                                                        <th colspan="2" class="text-center">Opciones</th>    
+                                                        <th><label for="producto">Producto</label></th>
+                                                        <th class="text-center">Cantidad</th>    
+                                                        <th><label for="">Opción</label></th>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <select id="producto" name="producto" class="form-control" onchange="ajax(this.value)" required>
+                                                            <select id="producto" name="productos[]" class="form-control" onchange="ajax(this.value)" required>
                                                                 <option selected="">Seleccione:</option>
                                                                 <?php 
                                                                     foreach($Productos as $prod)
                                                                     {
-                                                                        echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."</option>";
+                                                                        echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']." <i>[Existencia $prod[existencia]]</i></option>";
                                                                     }
                                                                  ?>
                                                             </select>
                                                         </td>
-                                                        <td class="text-center"><button class="btn btn-success" disabled>Guardar</button></td>
-                                                        <td class="text-center"><button class="btn btn-danger" disabled>Eliminar</button></td>
-                                                    </tr>                                                    
-                                                </table>    
+                                                        <td><input type="number" id="cantidadN" name="cantidadN[]" class="form-control" placeholder="Cantidad" required></td>
+                                                    
+                                                        <td class="text-center"><button class="btn btn-danger" disabled>Quitar</button></td>
+                                                    </tr>                                                   
+                                                </table>  
                                                 <div id="txtHint" class="color"></div>
+                                                <div id="alerta-roja" class="elemento">
+                                                    <div id="alerta" class="alert alert-danger" role="alert">
+                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
+                                                          </span></button>
+                                                          <strong>Error :</strong> Esta queriendo enviar más productos de los que hay en existencia. El botón agregar se ha bloqueado hasta que corrija el error.
+                                                    </div>
+                                                </div>  
+                                                
                                             </div>
 
-                                            <div class="form-group">                                                
+                                            <!--<div class="form-group">                                                
                                                 <label for="cantidad">Cantidad:</label>
                                                 <input type="number" id="cantidadN" name="cantidadN" class="form-control" required>
-                                                <br>
+                                                <br>    
                                                 <div id="alerta-roja" class="elemento">
                                                     <div id="alerta" class="alert alert-danger" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
@@ -457,7 +468,7 @@
                                                           <strong>Error :</strong> Esta queriendo enviar más productos de los que hay en existencia. El botón agregar se ha bloqueado hasta que corrija el error.
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>  -->
 
                                             <div class="form-group">
                                                 <label for="precio">Precio:</label>
@@ -569,7 +580,17 @@
         // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
         $(document).ready(function(){
             $("#alerta").hide();            
-            
+
+            // agregar más productos
+            $("#btn-add").click(function(){
+                $("#tablaProductos").append("<tr><td><select name='productos[]' class='form-control'><option>Seleccione:</option><?php foreach($Productos as $prod){echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."<i> [Existencia $prod[existencia]]</i></option>";} ?></select></td><td><input type='number' id='cantidadN' name='cantidadN[]' class='form-control' placeholder='Cantidad' required></td><td><button type='button' class='btn btn-danger btn-danger-quitar'>Quitar</button></td></tr>");
+            });
+            // fin agregar más productos
+
+            // llamado a funcion par quitar productos
+            $("body").on('click',".btn-danger-quitar",EliminarFila);
+
+            // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
             $("#cantidadN").blur(function(){
                 var cantidadInput = parseInt($("#cantidadN").val());
                 var existencia = parseInt($("#existenciaBD").val());
@@ -589,6 +610,11 @@
             });
         });
 
+        // function para quitar productos del modal del nuevo envio
+        function EliminarFila()
+        {
+            $(this).parent().parent().fadeOut("slow",function(){$(this).remove();});
+        }
 
         function confirmarRegistro(id)
         {
@@ -598,7 +624,7 @@
               }
         }
     </script>
-    <script src="../js/tablaProductos.js"></script>
+    <!--<script src="../js/tablaProductos.js"></script>-->
 
 </body>
 
