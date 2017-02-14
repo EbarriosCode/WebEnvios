@@ -110,8 +110,8 @@
 
 				<li><a href="contacto.html" class="icon-mail-1">  Contacto</a></li>
 
-				<li><a href="acerca.html" class="icon-info-circled">Acerca de</a></li>
-				<li><a href="#modal-insertar" data-toggle="modal"><span class="icon-archive"></span>Portal</a></li>
+				<li><a href="acerca.html" class="icon-database">Acerca de</a></li>
+				<li><a href="#modal-insertar" data-toggle="modal"><span class="icon-flash"></span>Portal</a></li>
 
 			</ul>
 
