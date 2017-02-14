@@ -98,10 +98,8 @@
                                                         echo date_format($fecha, 'd/m/Y');
                                                      ?></td>
                                                 <td><?php echo $item['nombreEstado']; ?></td>                    
-                                                <td><a href="EnviosKiwiEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
+                                                <td><a href="EnviosKiwiEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                         
 
-                                                <!--<td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php /*echo $item['id_envio'];?>','<?php echo $item['cliente']; ?>','<?php echo $item['telefono'];?>','<?php echo $item['numeroGuia'];?>','<?php echo $item['nombreDepartamento'];?>','<?php echo $item['nombreProducto']; ?>','<?php echo $item['cantidad']; ?>','<?php echo $item['precio_envio']; ?>','<?php echo $item['fecha']; ?>','<?php echo $item['estado_entrega']; */ ?>');">Editar <span class="icon-pencil"></span></button></td>
-                                                -->
                                                 <td><button class="btn btn-danger" onclick="confirmarRegistro('<?php echo $item['id_envio'];?>');" <?php if($_SESSION['tipo']!=1) echo "disabled"; ?>>Borrar <span class="icon-trash"></span></button> </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -265,45 +263,41 @@
                                             </div>                                        
     
                                             <div class="form-group">
-                                                <button type="button" id="btn-add" class="btn btn-primary">Agregar</button>
+                                                <button type="button" id="btn-add" class="btn btn-primary">Agregar Otro Producto <span class="icon-plus"></span></button>
                                                 <br>
                                                 <table class="table table-bordered" id="tablaProductos">
                                                     <tr>
-                                                        <th><label for="producto">Producto:</label></th>
-                                                        <th colspan="2" class="text-center">Opciones</th>    
+                                                        <th><label for="producto">Producto</label></th>
+                                                        <th class="text-center">Cantidad</th>    
+                                                        <th><label for="">Opción</label></th>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <select id="producto" name="producto" class="form-control" onchange="ajax(this.value)" required>
+                                                            <select id="producto" name="productos[]" class="form-control" onchange="ajax(this.value)" required>
                                                                 <option selected="">Seleccione:</option>
                                                                 <?php 
                                                                     foreach($Productos as $prod)
                                                                     {
-                                                                        echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."</option>";
+                                                                        echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']." <i>[Existencia $prod[existencia]]</i></option>";
                                                                     }
                                                                  ?>
                                                             </select>
                                                         </td>
-                                                        <td class="text-center"><button class="btn btn-success" disabled>Guardar</button></td>
-                                                        <td class="text-center"><button class="btn btn-danger" disabled>Eliminar</button></td>
-                                                    </tr>                                                    
-                                                </table>    
+                                                        <td><input type="number" id="cantidadN" name="cantidadN[]" class="form-control" placeholder="Cantidad" required></td>
+                                                    
+                                                        <td class="text-center"><button class="btn btn-danger" disabled>Quitar</button></td>
+                                                    </tr>                                                   
+                                                </table>  
                                                 <div id="txtHint" class="color"></div>
-                                            </div>
-
-                                            <div class="form-group">                                                
-                                                <label for="cantidad">Cantidad:</label>
-                                                <input type="number" id="cantidadN" name="cantidadN" class="form-control" required>
-                                                <br>
                                                 <div id="alerta-roja" class="elemento">
                                                     <div id="alerta" class="alert alert-danger" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;
                                                           </span></button>
                                                           <strong>Error :</strong> Esta queriendo enviar más productos de los que hay en existencia. El botón agregar se ha bloqueado hasta que corrija el error.
                                                     </div>
-                                                </div>
+                                                </div>  
+                                                
                                             </div>
-
                                             <div class="form-group">
                                                 <label for="precio">Precio:</label>
                                                 <input type="number" id="precio" name="precio" class="form-control" required>
@@ -391,11 +385,21 @@
                     </div>
                 </div>
 
-<script>
-        // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
+    <script>
+                // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
         $(document).ready(function(){
             $("#alerta").hide();            
-            
+
+            // agregar más productos
+            $("#btn-add").click(function(){
+                $("#tablaProductos").append("<tr><td><select name='productos[]' class='form-control'><option>Seleccione:</option><?php foreach($Productos as $prod){echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."<i> [Existencia $prod[existencia]]</i></option>";} ?></select></td><td><input type='number' id='cantidadM' name='cantidadN[]' class='form-control' placeholder='Cantidad' required></td><td><button type='button' class='btn btn-danger btn-danger-quitar'>Quitar</button></td></tr>");
+            });
+            // fin agregar más productos
+
+            // llamado a funcion par quitar productos
+            $("body").on('click',".btn-danger-quitar",EliminarFila);
+
+            // alerta por si lo despachado es mayor que la existencia en formulario de nuevo desactivada
             $("#cantidadN").blur(function(){
                 var cantidadInput = parseInt($("#cantidadN").val());
                 var existencia = parseInt($("#existenciaBD").val());
@@ -413,8 +417,14 @@
                     return false;
                 } 
             });
+
         });
 
+        // function para quitar productos del modal del nuevo envio
+        function EliminarFila()
+        {
+            $(this).parent().parent().fadeOut("slow",function(){$(this).remove();});
+        }
 
         function confirmarRegistro(id)
         {

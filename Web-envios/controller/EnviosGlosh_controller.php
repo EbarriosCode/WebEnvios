@@ -22,7 +22,7 @@
 	// Inicia paginación
 	$cant_filas = new Envios();
 	$pagination = new Envios();	
-	$no_registros = 15;
+	$no_registros = 25;
 
 	if(isset($_GET['pagina']))
 	 {
@@ -68,8 +68,10 @@
 		$numeroGuia = $_POST['numeroGuia'];
 		$departamento = $_POST['departamento'];
 		$direccion = $_POST['direccion'];
-		$producto = $_POST['producto'];
-		$cantidad = $_POST['cantidadN']; 
+		
+		$producto = $_POST['productos'];  // array
+		$cantidad = $_POST['cantidadN'];  // array
+		
 		$precio = $_POST['precio'];
 		$fecha = $_POST['fecha']; 
 		$estado = $_POST['status'];
@@ -78,35 +80,40 @@
 		$descontarExistencia = new Envios();
 		// objeto para validar que la existencia se mayor que 5
 		$existenciaCoherente = new Envios();
-		$validaExistencia = $existenciaCoherente->ValidaNuevaExistencia($producto);
-
-		if($validaExistencia > $cantidad)
+		
+		for($i=0; $i<sizeof($producto); ++$i)
 		{
+			$validaExistencia[$i] = $existenciaCoherente->ValidaNuevaExistencia($producto[$i]);
+		
+
+			if($validaExistencia[$i] > $cantidad[$i])
+			{
 			
-			$verificaInsertado = $insertar->insertar($cliente,$telefono,$numeroGuia,$departamento,$direccion,$producto,$cantidad,$precio,$fecha,$estado);	
+				$verificaInsertado = $insertar->insertar($cliente,$telefono,$numeroGuia,$departamento,$direccion,$producto[$i],$cantidad[$i],$precio,$fecha,$estado);	
 			
-			if($verificaInsertado)
-			{	
-				$descontarExistencia->descontarExistenciaProductos($producto,$cantidad);
-				echo "<script>alert('Registro Guardado Correctamente');";
-				echo "window.location.href='EnviosGlosh_controller.php'</script>";
+			
+				if($verificaInsertado)
+				{	
+					$descontarExistencia->descontarExistenciaProductos($producto[$i],$cantidad[$i]);
+					echo "<script>alert('Registro Guardado Correctamente');";
+					echo "window.location.href='EnviosGlosh_controller.php'</script>";
+				}
+
+				else
+				{
+					echo "<script>alert('Error No se Guardo el registro');</script>";
+					//echo "window.location.href='Envios_controller.php'</script>";
+				}
+
 			}
 
 			else
 			{
-				echo "<script>alert('Error No se Guardo el registro');</script>";
+				echo "<script>alert('Error No se Guardo el registro Porque la existencia es menor a lo que desea Enviar');</script>";
 				//echo "window.location.href='Envios_controller.php'</script>";
 			}
-
-		}
-		
-		else
-		{
-			echo "<script>alert('Error No se Guardo el registro Porque la existencia es menor a lo que desea Enviar');";
-			echo "window.location.href='EnviosGlosh_controller.php'</script>";
-		}				
+		}	   				
 	}
-
 	// eliminar registros
 	if(isset($_GET['accion']))
 	{
@@ -117,7 +124,7 @@
 			echo $bool = $obj->eliminar($idEnvio);
 			if ($bool) {
 				echo "<script>alert('Registro Borrado Correctamente');";
-				echo "window.location.href='EnviosGloshi_controller.php?true'</script>";
+				echo "window.location.href='EnviosGlosh_controller.php?true'</script>";
 			}
 			else
 			{

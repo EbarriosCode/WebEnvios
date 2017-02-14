@@ -245,7 +245,8 @@
 
                                                 </td>
                                                 <td> 
-                                                    <form id="formulario" action="" method="POST">                            <input type="hidden" name="id" value="<?php echo $item['id_envio']; ?>">
+                                                    <form id="formulario" action="" method="POST">                            
+                                                    <input type="hidden" name="id" value="<?php echo $item['id_envio']; ?>">
                                                     <input type="hidden" name="numeroGuia" value="<?php echo $item['numeroGuia']; ?>">                                               
                                                             <label class="checkbox-inline">
                                                                 <input type="checkbox" name="pagado" id="pagado" <?php if($item['pago_cargo']==1){ ?> checked   <?php } ?> value="1">
@@ -255,10 +256,8 @@
                                                       
                                                     </form>                                                       
                                                 </td>                                                
-                                                <td><a href="EnviosEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                                                                                   
+                                                <td><a href="EnviosEdit_controller.php?id=<?php echo $item['id_envio']; ?>"><button class='btn btn-success' data-toggle='modal' data-target="#modl-editar" >Editar<span class="icon-pencil"></span></button></a></td>                         
 
-                                                <!--<td><button class='btn btn-success' data-toggle='modal' data-target='#modal-editar' onclick="CargarDatos('<?php /*echo $item['id_envio'];?>','<?php echo $item['cliente']; ?>','<?php echo $item['telefono'];?>','<?php echo $item['numeroGuia'];?>','<?php echo $item['nombreDepartamento'];?>','<?php echo $item['nombreProducto']; ?>','<?php echo $item['cantidad']; ?>','<?php echo $item['precio_envio']; ?>','<?php echo $item['fecha']; ?>','<?php echo $item['estado_entrega']; */ ?>');">Editar <span class="icon-pencil"></span></button></td>
-                                                -->
                                                 <td><button class="btn btn-danger" onclick="confirmarRegistro('<?php echo $item['id_envio'];?>');">Borrar <span class="icon-trash"></span></button> </td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -287,11 +286,6 @@
     <div class="text-center">
         <nav aria-label="Page navigation">
               <ul class="pagination">
-               <!-- <li class="disabled">
-                  <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li> -->
                <?php 
                 
 
@@ -306,13 +300,7 @@
                     
                     }   
                 
-               /* if($inicio < $total_paginas){
-                    echo "<li>
-                      <a href='#' aria-label='Next'>
-                        <span aria-hidden='true'>&raquo;</span>
-                      </a>
-                    </li>";
-                }*/
+
                  ?>
               </ul>
         </nav> 
@@ -583,7 +571,7 @@
 
             // agregar más productos
             $("#btn-add").click(function(){
-                $("#tablaProductos").append("<tr><td><select name='productos[]' class='form-control'><option>Seleccione:</option><?php foreach($Productos as $prod){echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."<i> [Existencia $prod[existencia]]</i></option>";} ?></select></td><td><input type='number' id='cantidadN' name='cantidadN[]' class='form-control' placeholder='Cantidad' required></td><td><button type='button' class='btn btn-danger btn-danger-quitar'>Quitar</button></td></tr>");
+                $("#tablaProductos").append("<tr><td><select name='productos[]' class='form-control'><option>Seleccione:</option><?php foreach($Productos as $prod){echo "<option value='$prod[id_producto]'>".$prod['nombreProducto']."<i> [Existencia $prod[existencia]]</i></option>";} ?></select></td><td><input type='number' id='cantidadM' name='cantidadN[]' class='form-control' placeholder='Cantidad' required></td><td><button type='button' class='btn btn-danger btn-danger-quitar'>Quitar</button></td></tr>");
             });
             // fin agregar más productos
 
@@ -608,6 +596,7 @@
                     return false;
                 } 
             });
+
         });
 
         // function para quitar productos del modal del nuevo envio

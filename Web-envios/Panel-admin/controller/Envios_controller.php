@@ -124,9 +124,7 @@
 				echo "<script>alert('Error No se Guardo el registro Porque la existencia es menor a lo que desea Enviar');</script>";
 				//echo "window.location.href='Envios_controller.php'</script>";
 			}
-		}
-
-		   				
+		}		   				
 	}
 
 	// eliminar registros

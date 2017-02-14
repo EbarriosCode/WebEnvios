@@ -21,7 +21,7 @@
 	$glosh = new EnviosGlosh();
 	$cant_filasGlosh = new EnviosGlosh();
 	$paginationGlosh = new EnviosGlosh();	
-	$cant_registros = 15;
+	$cant_registros = 25;
 
 	if(isset($_GET['pagina']))
 	 {
@@ -61,6 +61,7 @@
 	$Productos = $inst->getProductos();
 
 	// insertar registros
+	// insertar registros
 	if(isset($_POST['insertar']))
 	{
 		$cliente = $_POST['nombre'];
@@ -68,8 +69,10 @@
 		$numeroGuia = $_POST['numeroGuia'];
 		$departamento = $_POST['departamento'];
 		$direccion = $_POST['direccion'];
-		$producto = $_POST['producto'];
-		$cantidad = $_POST['cantidadN']; 
+		
+		$producto = $_POST['productos'];  // array
+		$cantidad = $_POST['cantidadN'];  // array
+		
 		$precio = $_POST['precio'];
 		$fecha = $_POST['fecha']; 
 		$estado = $_POST['status'];
@@ -78,33 +81,41 @@
 		$descontarExistencia = new EnviosGlosh();
 		// objeto para validar que la existencia se mayor que 5
 		$existenciaCoherente = new EnviosGlosh();
-		$validaExistencia = $existenciaCoherente->ValidaNuevaExistencia($producto);
-
-		if($validaExistencia > $cantidad)
+		
+		for($i=0; $i<sizeof($producto); ++$i)
 		{
+			$validaExistencia[$i] = $existenciaCoherente->ValidaNuevaExistencia($producto[$i]);
+		
+
+			if($validaExistencia[$i] > $cantidad[$i])
+			{
 			
-			$verificaInsertado = $insertar->insertar($cliente,$telefono,$numeroGuia,$departamento,$direccion,$producto,$cantidad,$precio,$fecha,$estado);	
+				$verificaInsertado = $insertar->insertar($cliente,$telefono,$numeroGuia,$departamento,$direccion,$producto[$i],$cantidad[$i],$precio,$fecha,$estado);	
 			
-			if($verificaInsertado)
-			{	
-				$descontarExistencia->descontarExistenciaProductos($producto,$cantidad);
-				echo "<script>alert('Registro Guardado Correctamente');";
-				echo "window.location.href='EnviosGlosh_controller.php'</script>";
+			
+				if($verificaInsertado)
+				{	
+					$descontarExistencia->descontarExistenciaProductos($producto[$i],$cantidad[$i]);
+					echo "<script>alert('Registro Guardado Correctamente');";
+					echo "window.location.href='EnviosGlosh_controller.php'</script>";
+				}
+
+				else
+				{
+					echo "<script>alert('Error No se Guardo el registro');</script>";
+					//echo "window.location.href='Envios_controller.php'</script>";
+				}
+
 			}
 
 			else
 			{
-				echo "<script>alert('Error No se Guardo el registro');</script>";
+				echo "<script>alert('Error No se Guardo el registro Porque la existencia es menor a lo que desea Enviar');</script>";
 				//echo "window.location.href='Envios_controller.php'</script>";
 			}
-
 		}
-		
-		else
-		{
-			echo "<script>alert('Error No se Guardo el registro Porque la existencia es menor a lo que desea Enviar');";
-			echo "window.location.href='EnviosGlosh_controller.php'</script>";
-		}				
+
+		   				
 	}
 
 	// eliminar registros
@@ -133,7 +144,7 @@
 	if(isset($_POST['id']))
 	{
 		$id = $_POST['id'];
-
+		$numeroGuia = $_POST['numeroGuia'];
 		if(isset($_POST['pagado']))
 		{
 			$pagado = $_POST['pagado'];
@@ -142,7 +153,7 @@
 			if($pagado)
 			{
 				//echo $pagado." id: ".$id;
-				$pagarlo = $pagar->Pagado($id,$pagado);
+				$pagarlo = $pagar->Pagado($id,$pagado,$numeroGuia);
 				if($pagarlo){
 					//echo "<script>alert('Registro Pagado Correctamente');";
 					echo "<script>window.location.href='EnviosGlosh_controller.php';</script>";
@@ -156,7 +167,7 @@
 			{
 				$pagado=0;
 				//echo $pagado." id: ".$id;
-				$pagarlo = $pagar->Pagado($id,$pagado);
+				$pagarlo = $pagar->Pagado($id,$pagado,$numeroGuia);
 				if($pagarlo){
 					echo "<script>alert('Acaba de Cambiar de Pagado a No pagado este Registro');";
 					echo "window.location.href='EnviosGlosh_controller.php'</script>";
@@ -170,7 +181,7 @@
 		else
 		{		
 			//echo "0 id: ".$id;
-			$pagarlo = $pagar->Pagado($id,0);
+			$pagarlo = $pagar->Pagado($id,0,$numeroGuia);
 			if($pagarlo){
 					echo "<script>alert('Para marcar como Pagado debera marcar la casilla, el registro aparecerá como no Pagado');";
 					echo "window.location.href='EnviosGlosh_controller.php'</script>";

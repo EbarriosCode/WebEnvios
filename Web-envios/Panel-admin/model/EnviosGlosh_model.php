@@ -181,9 +181,9 @@
 			$this->db = null;
 		}
 
-		public function Pagado($id,$pagado)
+		public function Pagado($id,$pagado,$numeroGuia)
 		{
-			$sql = "UPDATE enviosGlosh SET pago_cargo='$pagado' WHERE id_envio='$id'";
+			$sql = "UPDATE enviosGlosh SET pago_cargo='$pagado' WHERE id_envio='$id' OR numeroGuia='$numeroGuia'";
 			$rs = $this->db->prepare($sql);
 			$verificador = $rs->execute();
 
