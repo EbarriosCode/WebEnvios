@@ -183,7 +183,7 @@
                                 </div>
                                 
                                 <div class="col-xs-5 text-left">
-                                    <form action="../controller/Envios_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Cliente, Departamento, Número de guía, Producto o Estado"/>
+                                    <form action="../controller/Envios_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Cliente, Departamento, Número de guía, Producto o Estado" onkeypress="return validateInput(event)"  onpaste="return false"/>
                                 </div>
                                 
                                 <br><br>
@@ -376,7 +376,7 @@
                                                                     
                                             <div class="form-group">                                            
                                                     <label for="nombre">Nombre del Cliente:</label>
-                                                    <input type="text" id="nombre" name="nombre" class="form-control" onkeypress="return validateInput(event)"  onpaste="return false" required>
+                                                    <input type="text" id="nombre" name="nombre" class="form-control" onkeypress="return validateInput(event)" onpaste="return false" required>
                                             </div>
 
                                             <div class="form-group">
@@ -405,7 +405,7 @@
 
                                             <div class="form-group">
                                                 <label for="direccion">Direccion Exacta:</label>
-                                                <textarea id="direccion" name="direccion" class="form-control" required></textarea>
+                                                <textarea id="direccion" name="direccion" class="form-control" onkeypress="return validateInput(event)" onpaste="return false" required></textarea>
                                             </div>                                        
     
                                             <div class="form-group">
@@ -611,6 +611,29 @@
               {
                  window.location = "Envios_controller.php?idEnvio="+id+"&accion=borrar";
               }
+        }
+
+        function validateInput(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ´áéíóúÁÉÍÓÚ0123456789-";
+            especiales = "8-37-38-46-164";
+            teclado_especial = false;
+
+                for(var i in especiales)
+                {
+                    if(key==especiales[i])
+                    {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+
+                if(caracteres.indexOf(teclado) == -1 && !teclado_especial)
+                {
+                    return false;
+                }
         }
     </script>
     <!--<script src="../js/tablaProductos.js"></script>-->

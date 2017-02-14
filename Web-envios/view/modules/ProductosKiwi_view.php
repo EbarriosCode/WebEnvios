@@ -22,7 +22,7 @@
                                 </div>
                                 
                                 <div class="col-xs-4 text-rigt">
-                                    <form action="ProductosKiwi_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Ingrese cualquier dato referente al producto"/>
+                                    <form action="ProductosKiwi_controller.php" method="POST"><input  type="text" name="buscar" id="buscar" class="form-control"  placeholder="Ingrese cualquier dato referente al producto" onkeypress="return validateInput(event)" onpaste="return false"/>
                                 </div>
 
                                 <div class="col-xs-4 text-left">
@@ -194,25 +194,25 @@
                                                                     
                                             <div class="form-group">                                            
                                                     <label for="nombre" class="sr-only">Nombre:</label>
-                                                    <input  class="form-control" onblur="this.className ='form-control campo';" type="text" id="nombre" name="nombre" placeholder="Nombre del Producto" required autofocus>
+                                                    <input  class="form-control" onblur="this.className ='form-control campo';" type="text" id="nombre" name="nombre" placeholder="Nombre del Producto" required autofocus onkeypress="return validateInput(event)" onpaste="return false">
                                                     <span></span>
                                             </div>
 
                                             <div class="form-group">
                                                     <label for="precio" class="sr-only">Precio:</label>
-                                                    <input class="form-control" onblur="this.className ='form-control campo';" type="number" id="precio" name="precio" placeholder="Precio" required>
+                                                    <input class="form-control" onblur="this.className ='form-control campo';" type="number" id="precio" name="precio" placeholder="Precio" required onkeypress="return validateInput(event)" onpaste="return false">
                                                     <span></span>
                                             </div>
                                             
                                             <div class="form-group">
                                                     <label for="direccion" class="sr-only">Descripción</label>
-                                                    <input value="" class="form-control" onblur="this.className ='form-control campo';" type="text" id="descripcion" name="descripcion" placeholder="Descripción" required>   
+                                                    <input value="" class="form-control" onblur="this.className ='form-control campo';" type="text" id="descripcion" name="descripcion" placeholder="Descripción" required onkeypress="return validateInput(event)" onpaste="return false">   
                                                     <span></span>
                                             </div>
                                             
                                             <div class="form-group">
                                                     <label for="responsable" class="sr-only">Existencia:</label>
-                                                    <input type="number" class="form-control" onblur="this.className ='form-control campo';" id="existencia" name="existencia" placeholder="Existencia" required>  
+                                                    <input type="number" class="form-control" onblur="this.className ='form-control campo';" id="existencia" name="existencia" placeholder="Existencia" required onkeypress="return validateInput(event)" onpaste="return false">  
                                                     <span></span>
                                             </div>
 
@@ -245,6 +245,29 @@
               {
                  window.location = "ProductosKiwi_controller.php?idProducto="+id+"&accion=borrar";
               }
+        }
+
+                function validateInput(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ´áéíóúÁÉÍÓÚ0123456789-";
+            especiales = "8-37-38-46-164";
+            teclado_especial = false;
+
+                for(var i in especiales)
+                {
+                    if(key==especiales[i])
+                    {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+
+                if(caracteres.indexOf(teclado) == -1 && !teclado_especial)
+                {
+                    return false;
+                }
         }
     </script>                            
 </body>

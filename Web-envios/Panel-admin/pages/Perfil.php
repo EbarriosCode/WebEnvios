@@ -157,20 +157,20 @@
                         <div class="form-group">
                             <label for="nick">Nombre de Usuario:</label>                            
                             <input type="hidden" id="id" name="id" value="<?php echo $dato['id']; ?>">
-                            <input type="text" class="form-control" value="<?php echo $dato['usuario']; ?>">
+                            <input type="text" class="form-control" value="<?php echo $dato['usuario']; ?>" onkeypress="return validateInput(event)" onpaste="return false">
                         
                         </div>
                         <div class="form-group">
                             <label for="password">Contraseña:</label>
-                            <input type="password" class="form-control" value="<?php echo $dato['password']; ?>">
+                            <input type="password" class="form-control" value="<?php echo $dato['password']; ?>" onkeypress="return validateInput(event)" onpaste="return false">
                         </div>
                         <div class="form-group">
                             <label for="rol">Rol de Usuario:</label>
-                            <input type="text" id="rol" name="rol" class="form-control" disabled value="<?php  if($dato['tipo']==1) echo 'Administrador'; else echo 'Usuario'; ?>">
+                            <input type="text" id="rol" name="rol" class="form-control" disabled value="<?php  if($dato['tipo']==1) echo 'Administrador'; else echo 'Usuario'; ?>" onkeypress="return validateInput(event)" onpaste="return false">
                         </div>
                         <div class="form-group">
                             <label for="newPassnewPass">Nueva Contraseña:</label>
-                            <input type="password" id="newPass" name="newPass" class="form-control">
+                            <input type="password" id="newPass" name="newPass" class="form-control" onkeypress="return validateInput(event)" onpaste="return false">
                         </div>
                     <?php endforeach; ?>
                         <input type="submit" class="btn btn-info" value="Guardar" id="guardar" name="guardar">
@@ -204,7 +204,30 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script>
+        function validateInput(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ´áéíóúÁÉÍÓÚ0123456789-";
+            especiales = "8-37-38-46-164";
+            teclado_especial = false;
 
+                for(var i in especiales)
+                {
+                    if(key==especiales[i])
+                    {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+
+                if(caracteres.indexOf(teclado) == -1 && !teclado_especial)
+                {
+                    return false;
+                }
+        }
+    </script>
 
 </body>
 

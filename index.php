@@ -164,7 +164,7 @@
 													<label for="usuario" class="sr-only">Usuario</label>
 														<div class="input-group">
 															<span class="input-group-addon"><span class="icon-user"></span></span>
-															<input value="" class="form-control" type="text" id="usu" name="usu" placeholder="Usuario" required autofocus>
+															<input value="" class="form-control" type="text" id="usu" name="usu" placeholder="Usuario" required autofocus onkeypress="return validateInput(event)" onpaste="return false">
 														</div>	
 											</div>
 
@@ -172,7 +172,7 @@
 													<label for="password" class="sr-only">Contraseña</label>
 														<div class="input-group">
 															<span class="input-group-addon"><span class="icon-lock-open"></span></span>
-															<input value="" class="form-control" type="password" id="pass" name="pass" placeholder="Contraseña" required>
+															<input value="" class="form-control" type="password" id="pass" name="pass" placeholder="Contraseña" required onkeypress="return validateInput(event)" onpaste="return false">
 														</div>
 											</div>
 											
@@ -191,6 +191,29 @@
 
 	<script src="js/jquery-1.12.0.min.js"></script>
 	<script src="js/bootstrap.js"></script>
-		
+	<script>
+        function validateInput(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ´áéíóúÁÉÍÓÚ0123456789-";
+            especiales = "8-37-38-46-164";
+            teclado_especial = false;
+
+                for(var i in especiales)
+                {
+                    if(key==especiales[i])
+                    {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+
+                if(caracteres.indexOf(teclado) == -1 && !teclado_especial)
+                {
+                    return false;
+                }
+        }
+    </script>
 </body>
 </html> 

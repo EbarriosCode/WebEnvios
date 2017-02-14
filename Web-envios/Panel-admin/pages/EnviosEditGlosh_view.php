@@ -146,15 +146,15 @@
 				<div class="form-group col-md-6">				
 					<input type="hidden" id="id" name="id" value="<?php echo $item['id_envio']; ?>">
 					<label for="nombre">Nombre del Cliente:</label>
-					<input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $item['cliente']; ?>">
+					<input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $item['cliente']; ?>" onkeypress="return validateInput(event)"  onpaste="return false">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="telefono">Teléfono:</label>
-					<input type="text" id="telefono" name="telefono" class="form-control" value="<?php echo $item['telefono']; ?>">
+					<input type="text" id="telefono" name="telefono" class="form-control" value="<?php echo $item['telefono']; ?>"onkeypress="return validateInput(event)"  onpaste="return false">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="numeroGuia">Número de Guía</label>
-					<input type="text" id="numeroGuia" name="numeroGuia" class="form-control" value="<?php echo $item['numeroGuia']; ?>">
+					<input type="text" id="numeroGuia" name="numeroGuia" class="form-control" value="<?php echo $item['numeroGuia']; ?>" onkeypress="return validateInput(event)"  onpaste="return false">
 				</div>
 
 				<div class="form-group col-md-6">
@@ -187,11 +187,11 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="cantidad">Cantidad:</label>
-					<input type="number" id="cantidad" name="cantidad" class="form-control" value="<?php echo $item['cantidad']; ?>">
+					<input type="number" id="cantidad" name="cantidad" class="form-control" value="<?php echo $item['cantidad']; ?>" onkeypress="return validateInput(event)"  onpaste="return false">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="precio">Precio:</label>
-					<input type="text" id="precio" name="precio" class="form-control" value="<?php echo $item['precio_envio']; ?>">
+					<input type="text" id="precio" name="precio" class="form-control" value="<?php echo $item['precio_envio']; ?>"onkeypress="return validateInput(event)"  onpaste="return false">
 				</div>
 				<div class="form-group col-md-6">
 					<label for="fecha">Fecha:</label>
@@ -247,5 +247,29 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+    <script>
+        function validateInput(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ´áéíóúÁÉÍÓÚ0123456789-";
+            especiales = "8-37-38-46-164";
+            teclado_especial = false;
+
+                for(var i in especiales)
+                {
+                    if(key==especiales[i])
+                    {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+
+                if(caracteres.indexOf(teclado) == -1 && !teclado_especial)
+                {
+                    return false;
+                }
+        }
+    </script>
 </body>
 </html>

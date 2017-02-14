@@ -329,7 +329,7 @@
                                     <div class="form-group">
                                         <label for="nombre">Nombre:</label>
                                         <input  type="hidden" id="idUsuario" name="idUsuario"/>
-                                        <input type="text" id="nombre" name="nombre" class="form-control" onkeypress="return validateInput(event)"  onpaste="return false" required>
+                                        <input type="text" id="nombre" name="nombre" class="form-control" onkeypress="return validateInput(event)"  onpaste="return false" required autofocus>
                                     </div>
 
                                     <div class="form-group">
@@ -435,6 +435,29 @@
               {
                  window.location = "Productos_controller.php?idProducto="+id+"&accion=borrar";
               }
+        }
+
+        function validateInput(e)
+        {
+            key = e.keyCode || e.which;
+            teclado = String.fromCharCode(key);
+            caracteres = " abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ´áéíóúÁÉÍÓÚ0123456789-";
+            especiales = "8-37-38-46-164";
+            teclado_especial = false;
+
+                for(var i in especiales)
+                {
+                    if(key==especiales[i])
+                    {
+                        teclado_especial = true;
+                        break;
+                    }
+                }
+
+                if(caracteres.indexOf(teclado) == -1 && !teclado_especial)
+                {
+                    return false;
+                }
         }
     </script>
 
